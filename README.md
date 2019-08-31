@@ -1,4 +1,4 @@
-# Klasa
+# @BotBind/Klasa
 
 [![Discord](https://discordapp.com/api/guilds/339942739275677727/embed.png)](https://discord.gg/FpEFSyY)
 [![npm](https://img.shields.io/npm/v/klasa.svg?maxAge=3600)](https://www.npmjs.com/package/klasa)
@@ -32,16 +32,16 @@ Following suit from Komada (the Croatian word for "pieces"), Klasa is the Croati
 - Incredibly fast loading (~100ms) with deep loading for commands.
 - Per-command cooldowns with bucket support and easy to configure.
 - Many different pieces and standalone utils to help you build the bot of your dreams!
-    - Commands: The most basic piece, they run when somebody types the prefix and the command name or any of its aliases.
-    - Events: Hot-reloadable structures for events, with internal error handling.
-    - Extendables: Easily extend Klasa or discord.js.
-    - Finalizers: Structures that run after successful command run.
-    - Inhibitors: Middleware that can stop a command from running (blacklist, permissions...).
-    - Languages: Easy internationalization support for your bot!
-    - Monitors: Watch every single message your bot receives! They're perfect for no-mention-spam, swear word filter, and so on!
-    - Providers: You can have one, or more, they're interfaces for the settings system and ensures the data is written correctly!
-    - Serializers: These allow you to change how the Settings system reads, writes, and displays information.
-    - Tasks: Pieces that handle scheduled tasks.
+  - Commands: The most basic piece, they run when somebody types the prefix and the command name or any of its aliases.
+  - Events: Hot-reloadable structures for events, with internal error handling.
+  - Extendables: Easily extend Klasa or discord.js.
+  - Finalizers: Structures that run after successful command run.
+  - Inhibitors: Middleware that can stop a command from running (blacklist, permissions...).
+  - Languages: Easy internationalization support for your bot!
+  - Monitors: Watch every single message your bot receives! They're perfect for no-mention-spam, swear word filter, and so on!
+  - Providers: You can have one, or more, they're interfaces for the settings system and ensures the data is written correctly!
+  - Serializers: These allow you to change how the Settings system reads, writes, and displays information.
+  - Tasks: Pieces that handle scheduled tasks.
 
 ## Time to get started!
 
