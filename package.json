@@ -1,10 +1,10 @@
 {
-  "name": "klasa",
+  "name": "@botbind/klasa",
   "version": "0.5.0-dev",
-  "description": "Klasa: Croatian for 'class', is a class based remix on Komada.",
-  "homepage": "https://klasa.js.org/",
+  "description": "Klasa framework modified for developing Bot Bind addons.",
+  "homepage": "http://botbind.com",
   "bugs": {
-    "url": "https://github.com/dirigeants/klasa/issues"
+    "url": "https://github.com/BotBind/klasa/issues"
   },
   "license": "MIT",
   "author": "BDistin",
@@ -12,7 +12,7 @@
   "types": "typings/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dirigeants/klasa.git"
+    "url": "https://github.com/BotBind/klasa.git"
   },
   "scripts": {
     "lint": "npx eslint --fix src && npx eslint --fix --config .eslintrcmd.json --ext md guides && npx tslint --fix 'typings/*.ts'",
