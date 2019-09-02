@@ -3,7 +3,7 @@ Events are placed in `./events/`. If a conflicting event is present in both the 
 Their structure is the following:
 
 ```javascript
-const { Event } = require('klasa');
+const { Event } = require('@botbind/klasa');
 
 module.exports = class extends Event {
 

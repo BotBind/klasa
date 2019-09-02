@@ -1,4 +1,4 @@
-const { Command, Stopwatch } = require('klasa');
+const { Command, Stopwatch } = require('@botbind/klasa');
 const { pathExists } = require('fs-nextra');
 const { join } = require('path');
 

@@ -1,4 +1,4 @@
-const { Command, util: { isFunction } } = require('klasa');
+const { Command, util: { isFunction } } = require('@botbind/klasa');
 const has = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
 
 module.exports = class extends Command {

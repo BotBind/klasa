@@ -1,4 +1,4 @@
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

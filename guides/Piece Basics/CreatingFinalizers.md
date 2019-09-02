@@ -4,7 +4,7 @@ Finalizers are functions run after successful commands, and this is the reason o
 Finalizers have the following syntax:
 
 ```javascript
-const { Finalizer } = require('klasa');
+const { Finalizer } = require('@botbind/klasa');
 
 module.exports = class extends Finalizer {
 

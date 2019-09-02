@@ -1,7 +1,7 @@
 New commands are created in the `./commands/` folder, where subfolders are the categories offered in the help command. For instance adding `./commands/Misc/test.js` will create a command named `test` in the `Misc` category. Subcategories can also be created by adding a second folder level.
 
 ```javascript
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

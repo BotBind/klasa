@@ -1,4 +1,4 @@
-const { Serializer } = require('klasa');
+const { Serializer } = require('@botbind/klasa');
 const URL = require('url');
 
 module.exports = class extends Serializer {

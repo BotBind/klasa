@@ -83,7 +83,7 @@ KlasaClient.defaultGuildSchema.remove('disabledChannels');
 Ensuring that a key exists is as simple as checking if the Schema.has() the key name.
 
 ```javascript
-const { Client } = require('klasa');
+const { Client } = require('@botbind/klasa');
 
 // Returns true or false, depending on if the Schema has the prefix key.
 Client.defaultGuildSchema.has('prefix');

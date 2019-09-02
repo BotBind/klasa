@@ -9,7 +9,7 @@ doesn't matter whether you return or throw (or resolve or reject a returned prom
 treated the same.
 
 ```javascript
-const { Inhibitor } = require('klasa');
+const { Inhibitor } = require('@botbind/klasa');
 
 module.exports = class extends Inhibitor {
 

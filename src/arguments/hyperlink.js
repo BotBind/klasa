@@ -1,5 +1,5 @@
 const { parse } = require('url');
-const { Argument } = require('klasa');
+const { Argument } = require('@botbind/klasa');
 
 module.exports = class extends Argument {
 

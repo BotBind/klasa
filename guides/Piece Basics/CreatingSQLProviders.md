@@ -9,7 +9,7 @@ This piece existed during SettingsGateway v1 (from 0.0.1 to 0.4.0) but got unifi
 ## Base Code
 
 ```javascript
-const { SQLProvider, QueryBuilder } = require('klasa');
+const { SQLProvider, QueryBuilder } = require('@botbind/klasa');
 
 module.exports = class extends SQLProvider {
 

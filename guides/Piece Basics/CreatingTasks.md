@@ -3,7 +3,7 @@ New tasks are created in the `./tasks/` folder, they are simple pieces that run 
 Their structure is the following:
 
 ```javascript
-const { Task } = require('klasa');
+const { Task } = require('@botbind/klasa');
 
 module.exports = class extends Task {
 
@@ -50,7 +50,7 @@ this.client.schedule.create('reminder', Date.now() + (1000 * 60), {
 Source code:
 
 ```javascript
-const { Task } = require('klasa');
+const { Task } = require('@botbind/klasa');
 
 module.exports = class extends Task {
 

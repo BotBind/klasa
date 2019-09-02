@@ -54,7 +54,7 @@ Each level consists of a number (the level), a function (the check function that
 Example:
 
 ```javascript
-const { Client, PermissionLevels } = require('klasa');
+const { Client, PermissionLevels } = require('@botbind/klasa');
 const config = require('./config.json');
 
 config.permissionLevels = new PermissionLevels()
@@ -88,7 +88,7 @@ Another way you can customize permission levels is simply modifying the defaultP
 Example:
 
 ```javascript
-const { Client } = require('klasa');
+const { Client } = require('@botbind/klasa');
 const config = require('./config.json');
 
 Client.defaultPermissionLevels

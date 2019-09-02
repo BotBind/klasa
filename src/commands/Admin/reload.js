@@ -1,4 +1,4 @@
-const { Command, Store, Stopwatch } = require('klasa');
+const { Command, Store, Stopwatch } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

@@ -13,7 +13,7 @@ npm install --save discordjs/discord.js dirigeants/klasa#{@branch}
 Create a file called `app.js` (or whatever you prefer) which will initiate and configure Klasa.
 
 ```javascript
-const { Client } = require('klasa');
+const { Client } = require('@botbind/klasa');
 
 new Client({
 	fetchAllMembers: false,

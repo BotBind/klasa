@@ -1,4 +1,4 @@
-const { Command, util: { toTitleCase, codeBlock } } = require('klasa');
+const { Command, util: { toTitleCase, codeBlock } } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

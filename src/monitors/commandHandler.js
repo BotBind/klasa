@@ -1,4 +1,4 @@
-const { Monitor, Stopwatch, util: { regExpEsc } } = require('klasa');
+const { Monitor, Stopwatch, util: { regExpEsc } } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
 

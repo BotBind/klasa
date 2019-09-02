@@ -1,4 +1,4 @@
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 const fs = require('fs-nextra');
 const { resolve, join } = require('path');
 

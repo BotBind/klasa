@@ -11,7 +11,7 @@ It's very easy to get started with using the new plugin system.
 Say we have our main app like so:
 
 ```javascript
-const { Client } = require('klasa');
+const { Client } = require('@botbind/klasa');
 const config = require('./config.json');
 
 new Client(config).login(config.token);
@@ -20,7 +20,7 @@ new Client(config).login(config.token);
 If you wanted to use the klasa-dashboard-hooks plugin, you would insert the following code (assuming you installed klasa-dashboard-hooks):
 
 ```javascript
-const { Client } = require('klasa');
+const { Client } = require('@botbind/klasa');
 const config = require('./config.json');
 
 Client.use(require('klasa-dashboard-hooks'));
@@ -38,7 +38,7 @@ The only requirement for making a plugin is to make sure you export an unbound f
 
 ```javascript
 // index.js
-const { Client: { plugin } } = require('klasa');
+const { Client: { plugin } } = require('@botbind/klasa');
 module.exports = {
 	// [plugin] must be typed exactly like this.
 	[plugin]() {

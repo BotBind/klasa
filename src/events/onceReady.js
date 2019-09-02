@@ -1,4 +1,4 @@
-const { Event, util } = require('klasa');
+const { Event, util } = require('@botbind/klasa');
 
 module.exports = class extends Event {
 

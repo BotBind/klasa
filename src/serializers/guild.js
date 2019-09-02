@@ -1,4 +1,4 @@
-const { Serializer } = require('klasa');
+const { Serializer } = require('@botbind/klasa');
 const { Guild } = require('discord.js');
 
 module.exports = class extends Serializer {

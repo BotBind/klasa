@@ -5,7 +5,7 @@ JSON to store per-guild configuration.
 When you create a data provider, you can access to them by: `client.providers.get(ProviderName)`.
 
 ```javascript
-const { Provider } = require('klasa');
+const { Provider } = require('@botbind/klasa');
 
 module.exports = class extends Provider {
 

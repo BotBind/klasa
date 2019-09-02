@@ -26,7 +26,7 @@ By default, there are several built-in types that the developer can use, and wit
 To add new types, you make a class, extending {@link Serializer}. The following extendable is a template for this:
 
 ```javascript
-const { Serializer } = require('klasa');
+const { Serializer } = require('@botbind/klasa');
 
 // Extend Serializer to create your own. These are loaded from  the Serializers folder.
 module.exports = class Date extends Serializer {

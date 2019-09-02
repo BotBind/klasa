@@ -20,7 +20,7 @@ In this function, we are checking if the schema has the key `experience`. If it 
 Now that we have set up the schema, we will want to create a monitor:
 
 ```javascript
-const { Monitor } = require('klasa');
+const { Monitor } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
 
@@ -62,7 +62,7 @@ Math.floor(0.1 * Math.sqrt(POINTS + 1));
 Then inside our monitor's run method:
 
 ```javascript
-const { Monitor } = require('klasa');
+const { Monitor } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
 
@@ -107,7 +107,7 @@ To allow users to know their current amount of points and level, we will create 
 Let's create a file in `commands/Social/points.js` with the following contents:
 
 ```javascript
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 
@@ -128,7 +128,7 @@ module.exports = class extends Command {
 Let's create a file in `commands/Social/level.js` with the following contents:
 
 ```javascript
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

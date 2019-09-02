@@ -1,4 +1,4 @@
-const { Finalizer, Colors } = require('klasa');
+const { Finalizer, Colors } = require('@botbind/klasa');
 
 module.exports = class extends Finalizer {
 

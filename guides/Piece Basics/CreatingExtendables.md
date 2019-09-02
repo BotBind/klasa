@@ -5,7 +5,7 @@ Extendables have the following syntax:
 <!-- eslint-disable no-dupe-class-members, no-inline-comments -->
 
 ```javascript
-const { Extendable } = require('klasa');
+const { Extendable } = require('@botbind/klasa');
 
 class MyExtendable extends Extendable {
 
@@ -55,7 +55,7 @@ module.exports = MyExtendable;
 ## Understanding extendable settings
 
 ```javascript
-const { Extendable } = require('klasa');
+const { Extendable } = require('@botbind/klasa');
 
 module.exports = class extends Extendable {
 
@@ -87,7 +87,7 @@ extendable is likely to be like the following:
 and Message has both properties of `author` and `channel`.
 
 ```js
-const { Extendable } = require('klasa');
+const { Extendable } = require('@botbind/klasa');
 const { Message } = require('discord.js');
 const makePrompt = require('../lib/util/Prompt');
 

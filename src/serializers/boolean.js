@@ -1,4 +1,4 @@
-const { Serializer } = require('klasa');
+const { Serializer } = require('@botbind/klasa');
 const truths = ['1', 'true', '+', 't', 'yes', 'y'];
 const falses = ['0', 'false', '-', 'f', 'no', 'n'];
 

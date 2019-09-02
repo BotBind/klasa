@@ -9,7 +9,7 @@ Their structure is identical to inhibitors, being the only difference is that yo
 don't pass a command parameter to them.
 
 ```javascript
-const { Monitor } = require('klasa');
+const { Monitor } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
 

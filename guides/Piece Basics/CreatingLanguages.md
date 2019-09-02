@@ -3,7 +3,7 @@ Languages provide localizations to your bot. The built in ones allow you full co
 Languages have the following syntax:
 
 ```javascript
-const { Language } = require('klasa');
+const { Language } = require('@botbind/klasa');
 
 module.exports = class extends Language {
 

@@ -1,4 +1,4 @@
-const { Inhibitor, RateLimitManager } = require('klasa');
+const { Inhibitor, RateLimitManager } = require('@botbind/klasa');
 
 module.exports = class extends Inhibitor {
 

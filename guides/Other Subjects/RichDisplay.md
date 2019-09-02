@@ -3,7 +3,7 @@
 An extremely simple working example can achieved by this code:
 
 ```javascript
-const { Command, RichDisplay } = require('klasa');
+const { Command, RichDisplay } = require('@botbind/klasa');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Command {

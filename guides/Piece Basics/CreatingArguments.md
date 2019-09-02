@@ -1,7 +1,7 @@
 Arguments are the resolvers used to convert strings padded by users, into fully resolved parameters that are passed into the command. New arguments are created in the `./arguments/` folder.
 
 ```javascript
-const { Argument } = require('klasa');
+const { Argument } = require('@botbind/klasa');
 
 module.exports = class extends Argument {
 
@@ -21,7 +21,7 @@ The run method in {@link Argument} takes 3 parameters:
 | **message**      | {@link KlasaMessage} | The message that triggered the command |
 
 ```javascript
-const { Argument } = require('klasa');
+const { Argument } = require('@botbind/klasa');
 const REGEX_EMOJI = /^(?:<a?:\w{2,32}:)?(\d{17,19})>?$/;
 
 module.exports = class extends Argument {
@@ -46,7 +46,7 @@ How does the new argument work?
 And now, you can use this type in a command! For example, the following:
 
 ```javascript
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

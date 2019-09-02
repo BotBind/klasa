@@ -19,7 +19,7 @@ const client = new KlasaClient({ providers: { default: 'rethinkdb' } });
 If you have other options, such as a prefix, then your main file would look like this:
 
 ```javascript
-const { KlasaClient } = require('klasa');
+const { KlasaClient } = require('@botbind/klasa');
 
 new KlasaClient({
 	prefix: 'k!',
@@ -36,7 +36,7 @@ Another advantage of using this interface is that it can handle multiple databas
 Let's say I want to add a new Gateway instance called `channels` that stores data to complement our permissions, and I want the **postgresql** provider to handle it but **rethinkdb** as the default provider.
 
 ```javascript
-const { KlasaClient, Schema } = require('klasa');
+const { KlasaClient, Schema } = require('@botbind/klasa');
 
 const client = new KlasaClient({
 	prefix: 'k!',

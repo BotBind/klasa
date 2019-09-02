@@ -9,7 +9,7 @@ This is one of the most requested features for Klasa: the ability to translate a
 They require an argument name from the `usageString`, as you have seen in {@tutorial CommandsArguments}, the `name` is what identifies a Tag/argument, to do so, you put that name, and Klasa will modify the Tag so when it's value is not providen or is incorrect, use your custom message. Let's say we have an Overwatch command and you want Klasa to reply with a *nicer* response, for example, when you have the [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) type with `/(\w{3,12})#(\d{4,5})/i` and you want to notify the user that they did not write the name correctly, then you may want to customize the message that the framework sends so they can understand what's going wrong better. Consider the following command example:
 
 ```javascript
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 
@@ -28,7 +28,7 @@ module.exports = class extends Command {
 And you want it to send 'You must insert a valid battletag with the format username#0000' when the user doesn't input a string matching the RegExp, then you may use the method {@link Command.customizeResponse} inside the commands' constructor:
 
 ```javascript
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

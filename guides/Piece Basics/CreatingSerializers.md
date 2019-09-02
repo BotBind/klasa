@@ -1,7 +1,7 @@
 Serializers are pieces used for SettingsGateway's core to serialize and deserialize data. New serializers are created in the `./serializers/` folder.
 
 ```javascript
-const { Serializer } = require('klasa');
+const { Serializer } = require('@botbind/klasa');
 
 module.exports = class extends Serializer {
 

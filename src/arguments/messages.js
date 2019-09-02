@@ -1,4 +1,4 @@
-const { MultiArgument } = require('klasa');
+const { MultiArgument } = require('@botbind/klasa');
 
 module.exports = class extends MultiArgument {
 

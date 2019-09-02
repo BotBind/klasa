@@ -1,4 +1,4 @@
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 const { User } = require('discord.js');
 
 module.exports = class extends Command {

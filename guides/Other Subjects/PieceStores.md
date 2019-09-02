@@ -3,7 +3,7 @@ Probably one of the most advanced and powerful tools in klasa is making your own
 The most basic store:
 
 ```javascript
-const { Store } = require('klasa');
+const { Store } = require('@botbind/klasa');
 const Something = require('./Something');
 
 class SomethingStore extends Store {
@@ -20,7 +20,7 @@ module.exports = SomethingStore;
 The most basic Piece:
 
 ```javascript
-const { Piece } = require('klasa');
+const { Piece } = require('@botbind/klasa');
 
 class Something extends Piece {
 
@@ -36,7 +36,7 @@ module.exports = Something;
 Now that probably doesn't give you much idea on what that means or why it is useful. But take the following idea: You are making a starboard for your bot, and you need raw events for messageReactionAdd. A switch case for rawEvents would do the trick, but it would be a lot of hassle if you wanted to add *more* raw events. So lets make a piece store for rawEvents, which will make loading, reloading and creating them much easier.
 
 ```javascript
-const { Store } = require('klasa');
+const { Store } = require('@botbind/klasa');
 const RawEvent = require('./RawEvent');
 
 class RawEventStore extends Store {
@@ -53,7 +53,7 @@ module.exports = RawEventStore;
 See? That's not that different from a simple store. Although be sure to take a look at all of the core stores. Sometimes, like in the case of Providers, we want to run a shutdown method before we delete the collection entry. In that case we also want to overwrite the clear method, and loop over the collection doing this.delete() so that all entries are shutdown properly.
 
 ```javascript
-const { Piece } = require('klasa');
+const { Piece } = require('@botbind/klasa');
 
 class RawEvent extends Piece {
 
@@ -83,7 +83,7 @@ module.exports = class extends RawEvent {
 This is great and all, but we need to register the store:
 
 ```javascript
-const { Client } = require('klasa');
+const { Client } = require('@botbind/klasa');
 const RawEventStore = require('./RawEventStore');
 
 class MyClient extends Client {
@@ -108,7 +108,7 @@ new MyClient({ pieceDefaults: { rawEvents: { enabled: true } } }).login('token-g
 Now, to make our raw event store actually work, we're going to add this code in `events/raw.js` to run on every raw event received
 
 ```javascript
-const { Event } = require('klasa');
+const { Event } = require('@botbind/klasa');
 
 module.exports = class extends Event {
 

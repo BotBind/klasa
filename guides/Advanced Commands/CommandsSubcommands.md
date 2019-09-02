@@ -5,7 +5,7 @@ It is called **subcommand** to the special behaviour when a command takes multip
 How do subcommands work? The concept may be quite hard to *understand*; however, it's also very powerful. We will take the conf command as an example:
 
 ```javascript
-const { Command } = require('klasa');
+const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
 

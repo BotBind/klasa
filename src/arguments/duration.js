@@ -1,4 +1,4 @@
-const { Argument, Duration } = require('klasa');
+const { Argument, Duration } = require('@botbind/klasa');
 
 module.exports = class extends Argument {
 
