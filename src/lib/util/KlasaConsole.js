@@ -284,7 +284,7 @@ class KlasaConsole extends Console {
         "Content-Type": "application/json",
         Authorization: auth
       },
-      body: JSON.stringify({ level, message: data[0] })
+      body: JSON.stringify({ level, message: data })
     }).catch(error => {
       console.error(error);
     });
