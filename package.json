@@ -1,6 +1,6 @@
 {
   "name": "@botbind/klasa",
-  "version": "0.5.0-dev",
+  "version": "0.5.2-dev",
   "description": "Klasa framework modified for developing Bot Bind addons.",
   "homepage": "http://botbind.com",
   "bugs": {
