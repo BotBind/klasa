@@ -16,11 +16,11 @@ Create a file called `app.js` (or whatever you prefer) which will initiate and c
 const { Client } = require('@botbind/klasa');
 
 new Client({
-	fetchAllMembers: false,
-	prefix: '+',
-	commandEditing: true,
-	typing: true,
-	readyMessage: (client) => `Successfully initialized. Ready to serve ${client.guilds.size} guilds.`
+  fetchAllMembers: false,
+  prefix: '+',
+  commandEditing: true,
+  typing: true,
+  readyMessage: client => `Successfully initialized. Ready to serve ${client.guilds.size} guilds.`
 }).login('your-bot-token');
 ```
 
@@ -28,8 +28,8 @@ new Client({
 
 {@typedef KlasaClientOptions}
 
->1. ownerID is acquired from the Discord API if not provided: `client.application.owner.id`
->1. quotedStringSupport is can be overridden per command.
+> 1.  ownerID is acquired from the Discord API if not provided: `client.application.owner.id`
+> 1.  quotedStringSupport is can be overridden per command.
 
 > KlasaClientOptions are merged with discord.js' ClientOptions, see [ClientOptions in the discord.js docs](https://discord.js.org/#/docs/main/master/typedef/ClientOptions).
 

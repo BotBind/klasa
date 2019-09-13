@@ -8,41 +8,39 @@ const { MENTION_REGEX } = require('../util/constants');
  * @extends AliasPiece
  */
 class Serializer extends AliasPiece {
+  /**
+   * The serialize method to be overwritten in actual Serializers
+   * @since 0.5.0
+   * @param {*} data The data to serialize
+   * @returns {string|number|boolean}
+   */
+  serialize(data) {
+    return data;
+  }
 
-	/**
-	 * The serialize method to be overwritten in actual Serializers
-	 * @since 0.5.0
-	 * @param {*} data The data to serialize
-	 * @returns {string|number|boolean}
-	 */
-	serialize(data) {
-		return data;
-	}
+  /**
+   * The deserialize method to be overwritten in actual Serializers
+   * @since 0.5.0
+   * @param {*} data The data to deserialize
+   * @param {SchemaPiece} piece The SchemaPiece we are deserializing for.
+   * @param {Language} language The language to use when responding.
+   * @param {external:Guild} [guild] The guild that will help deserialize
+   * @returns {*}
+   * @abstract
+   */
+  async deserialize() {
+    throw new Error(`The deserialize method has not been implemented by ${this.type}:${this.name}`);
+  }
 
-	/**
-	 * The deserialize method to be overwritten in actual Serializers
-	 * @since 0.5.0
-	 * @param {*} data The data to deserialize
-	 * @param {SchemaPiece} piece The SchemaPiece we are deserializing for.
-	 * @param {Language} language The language to use when responding.
-	 * @param {external:Guild} [guild] The guild that will help deserialize
-	 * @returns {*}
-	 * @abstract
-	 */
-	async deserialize() {
-		throw new Error(`The deserialize method has not been implemented by ${this.type}:${this.name}`);
-	}
-
-	/**
-	 * The stringify method to be overwritten in actual Serializers
-	 * @since 0.5.0
-	 * @param {*} data The data to stringify
-	 * @returns {string}
-	 */
-	stringify(data) {
-		return String(data);
-	}
-
+  /**
+   * The stringify method to be overwritten in actual Serializers
+   * @since 0.5.0
+   * @param {*} data The data to stringify
+   * @returns {string}
+   */
+  stringify(data) {
+    return String(data);
+  }
 }
 
 /**

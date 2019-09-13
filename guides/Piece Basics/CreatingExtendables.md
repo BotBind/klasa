@@ -8,39 +8,37 @@ Extendables have the following syntax:
 const { Extendable } = require('@botbind/klasa');
 
 class MyExtendable extends Extendable {
+  constructor(...args) {
+    super(...args, {
+      appliesTo: [],
+      name: 'nameOfExtendable',
+      enabled: true
+    });
+  }
 
-	constructor(...args) {
-		super(...args, {
-			appliesTo: [],
-			name: 'nameOfExtendable',
-			enabled: true
-		});
-	}
+  // Getters
 
-	// Getters
+  get myProperty() {
+    // Make a getter
+  }
 
-	get myProperty() {
-		// Make a getter
-	}
+  // Setters
 
-	// Setters
+  set myProperty(value) {
+    // Make a setter
+  }
 
-	set myProperty(value) {
-		// Make a setter
-	}
+  // Methods
 
-	// Methods
+  myMethod() {
+    // Make a method
+  }
 
-	myMethod() {
-		// Make a method
-	}
+  // Static Methods
 
-	// Static Methods
-
-	static myMethod() {
-		// Make a static method
-	}
-
+  static myMethod() {
+    // Make a static method
+  }
 }
 
 // Static Properties
@@ -58,15 +56,13 @@ module.exports = MyExtendable;
 const { Extendable } = require('@botbind/klasa');
 
 module.exports = class extends Extendable {
-
-	constructor(...args) {
-		super(...args, {
-			appliesTo: [],
-			name: 'nameOfExtendable',
-			enabled: true
-		});
-	}
-
+  constructor(...args) {
+    super(...args, {
+      appliesTo: [],
+      name: 'nameOfExtendable',
+      enabled: true
+    });
+  }
 };
 ```
 
@@ -84,7 +80,7 @@ everywhere in your code, resolving if the user confirms the prompt, or rejecting
 extendable is likely to be like the following:
 
 > You can extend the Message object with this because you're likely to lock the prompt for a user in a channel,
-and Message has both properties of `author` and `channel`.
+> and Message has both properties of `author` and `channel`.
 
 ```js
 const { Extendable } = require('@botbind/klasa');
@@ -92,16 +88,14 @@ const { Message } = require('discord.js');
 const makePrompt = require('../lib/util/Prompt');
 
 module.exports = class extends Extendable {
+  constructor(...args) {
+    super(...args, { appliesTo: [Message] });
+  }
 
-	constructor(...args) {
-		super(...args, { appliesTo: [Message] });
-	}
-
-	prompt() {
-		// `this` is an instance of Message
-		return makePrompt(this);
-	}
-
+  prompt() {
+    // `this` is an instance of Message
+    return makePrompt(this);
+  }
 };
 ```
 

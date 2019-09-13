@@ -8,81 +8,78 @@ When you create a data provider, you can access to them by: `client.providers.ge
 const { Provider } = require('@botbind/klasa');
 
 module.exports = class extends Provider {
+  constructor(...args) {
+    super(...args, { name: 'providerName' });
+  }
 
-	constructor(...args) {
-		super(...args, { name: 'providerName' });
-	}
+  init() {
+    // The init method, usually checking file existence in file based
+    // databases or connect to them.
+  }
 
-	init() {
-		// The init method, usually checking file existence in file based
-		// databases or connect to them.
-	}
+  /* Table methods */
 
-	/* Table methods */
+  hasTable(table) {
+    // The code to check if a table exists
+  }
 
-	hasTable(table) {
-		// The code to check if a table exists
-	}
+  createTable(table) {
+    // The code to create a table, in SQL databases, they take two
+    // arguments.
+  }
 
-	createTable(table) {
-		// The code to create a table, in SQL databases, they take two
-		// arguments.
-	}
+  deleteTable(table) {
+    // The code to delete/drop a table.
+  }
 
-	deleteTable(table) {
-		// The code to delete/drop a table.
-	}
+  /* Document methods */
 
-	/* Document methods */
+  getAll(table) {
+    // Get all values from a table
+  }
 
-	getAll(table) {
-		// Get all values from a table
-	}
+  getKeys(table) {
+    // Get all keys (ids) from a table
+  }
 
-	getKeys(table) {
-		// Get all keys (ids) from a table
-	}
+  get(table, entryID) {
+    // Get an entry from a table
+  }
 
-	get(table, entryID) {
-		// Get an entry from a table
-	}
+  has(table, entryID) {
+    // Check if the entry exists in a table
+  }
 
-	has(table, entryID) {
-		// Check if the entry exists in a table
-	}
+  getRandom(table) {
+    // Get a random key from the a table
+  }
 
-	getRandom(table) {
-		// Get a random key from the a table
-	}
+  create(table, entryID, data) {
+    // Create a new entry to a table
+  }
 
-	create(table, entryID, data) {
-		// Create a new entry to a table
-	}
+  set(...args) {
+    // Reserved for retro-compatibility
+    return this.create(...args);
+  }
 
-	set(...args) {
-		// Reserved for retro-compatibility
-		return this.create(...args);
-	}
+  insert(...args) {
+    // Reserved for retro-compatibility
+    return this.create(...args);
+  }
 
-	insert(...args) {
-		// Reserved for retro-compatibility
-		return this.create(...args);
-	}
+  update(table, entryID, data) {
+    // Update an entry from a table
+  }
 
-	update(table, entryID, data) {
-		// Update an entry from a table
-	}
+  replace(table, entryID, data) {
+    // Perform a destructive write, where the previous data gets overwritten by the new one
+  }
 
-	replace(table, entryID, data) {
-		// Perform a destructive write, where the previous data gets overwritten by the new one
-	}
-
-	delete(table, entryID) {
-		// Delete an entry from a table
-	}
-
+  delete(table, entryID) {
+    // Delete an entry from a table
+  }
 };
-
 ```
 
 The example above is the JSON provider used in klasa, and interfacing with the {@link SettingsGateway}.

@@ -1,7 +1,6 @@
 ---
 name: Submit an issue
 about: Describe us an issue you've received with Klasa.
-
 ---
 
 <!--
@@ -15,7 +14,6 @@ This issue tracker is only for issue reports and proposals. You won't receive an
 ### Code or steps to reproduce
 
 ```js
-
 ```
 
 ### Expected and actual behavior

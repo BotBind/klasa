@@ -1,7 +1,6 @@
 ---
 name: Submit a Proposal
 about: Suggest enhancements or improvements to existing features.
-
 ---
 
 ### Describe your proposal

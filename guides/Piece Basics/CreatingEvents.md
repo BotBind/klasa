@@ -1,4 +1,4 @@
-Events are placed in `./events/`. If a conflicting event is present in both the core and your client, *only your client version* is loaded and will run when that event is triggered.
+Events are placed in `./events/`. If a conflicting event is present in both the core and your client, _only your client version_ is loaded and will run when that event is triggered.
 
 Their structure is the following:
 
@@ -6,32 +6,30 @@ Their structure is the following:
 const { Event } = require('@botbind/klasa');
 
 module.exports = class extends Event {
+  constructor(...args) {
+    super(...args, {
+      name: 'yourEventName',
+      enabled: true,
+      event: 'theEventToListenTo',
+      emitter: client,
+      once: false
+    });
+  }
 
-	constructor(...args) {
-		super(...args, {
-			name: 'yourEventName',
-			enabled: true,
-			event: 'theEventToListenTo',
-			emitter: client,
-			once: false
-		});
-	}
+  run(...params) {
+    // This is where you place the code you want to run for your event
+  }
 
-	run(...params) {
-		// This is where you place the code you want to run for your event
-	}
-
-	async init() {
-		/*
-		 * You can optionally define this method which will be run when the bot starts
-		 * (after login, so discord data is available via this.client)
-		 */
-	}
-
+  async init() {
+    /*
+     * You can optionally define this method which will be run when the bot starts
+     * (after login, so discord data is available via this.client)
+     */
+  }
 };
 ```
 
-Where `...params` are arguments you would *normally* get from those events. For example, while the `ready` event would only have none, the `guildMemberAdd` event would be `member`.
+Where `...params` are arguments you would _normally_ get from those events. For example, while the `ready` event would only have none, the `guildMemberAdd` event would be `member`.
 
 ## Options
 

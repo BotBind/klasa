@@ -1,6 +1,5 @@
 ### Description of the PR
 
-
 ### Changes Proposed in this Pull Request (List new items in CHANGELOG.MD)
 
 -

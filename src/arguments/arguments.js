@@ -1,13 +1,11 @@
 const { MultiArgument } = require('@botbind/klasa');
 
 module.exports = class extends MultiArgument {
+  constructor(...args) {
+    super(...args, { aliases: ['...argument'] });
+  }
 
-	constructor(...args) {
-		super(...args, { aliases: ['...argument'] });
-	}
-
-	get base() {
-		return this.store.get('argument');
-	}
-
+  get base() {
+    return this.store.get('argument');
+  }
 };

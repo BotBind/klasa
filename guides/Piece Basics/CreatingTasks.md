@@ -1,4 +1,4 @@
-New tasks are created in the `./tasks/` folder, they are simple pieces that run from {@link Schedule} after a {@link ScheduledTask} end-of-life or recurrence time. The `data` field, also called *metadata*, is an option that can contain anything, even an object. Note that this gets [`JSON.stringify()`'ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) in SQL so it gets parsed back on start-up.
+New tasks are created in the `./tasks/` folder, they are simple pieces that run from {@link Schedule} after a {@link ScheduledTask} end-of-life or recurrence time. The `data` field, also called _metadata_, is an option that can contain anything, even an object. Note that this gets [`JSON.stringify()`'ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) in SQL so it gets parsed back on start-up.
 
 Their structure is the following:
 
@@ -6,22 +6,20 @@ Their structure is the following:
 const { Task } = require('@botbind/klasa');
 
 module.exports = class extends Task {
+  constructor(...args) {
+    super(...args, { name: 'yourTaskName', enabled: true });
+  }
 
-	constructor(...args) {
-		super(...args, { name: 'yourTaskName', enabled: true });
-	}
+  async run(metadata) {
+    // The code that will receive the metadata from the task
+  }
 
-	async run(metadata) {
-		// The code that will receive the metadata from the task
-	}
-
-	async init() {
-		/*
-		 * You can optionally define this method which will be run when the bot starts
-		 * (after login, so discord data is available via this.client)
-		 */
-	}
-
+  async init() {
+    /*
+     * You can optionally define this method which will be run when the bot starts
+     * (after login, so discord data is available via this.client)
+     */
+  }
 };
 ```
 
@@ -32,16 +30,16 @@ Where `metadata` is what you passed to `ScheduledTaskOptions.data`, `null` if no
 After you have created your {@link Task} piece, you'll be able to create the first scheduled tasks for it:
 
 ```javascript
-this.client.schedule.create('reminder', Date.now() + (1000 * 60), {
-	data: {
-		// This is the metadata. In one minute after the creation of this scheduled
-		// task, Schedule will call your new task with this object.
-		user: message.author.id,
-		text: 'This is a reminder',
-		channel: message.channel.id
-	},
-	catchUp: true
-	// This task will try to run again (catch up) if the bot was off when it was meant to fire
+this.client.schedule.create('reminder', Date.now() + 1000 * 60, {
+  data: {
+    // This is the metadata. In one minute after the creation of this scheduled
+    // task, Schedule will call your new task with this object.
+    user: message.author.id,
+    text: 'This is a reminder',
+    channel: message.channel.id
+  },
+  catchUp: true
+  // This task will try to run again (catch up) if the bot was off when it was meant to fire
 });
 ```
 
@@ -53,12 +51,10 @@ Source code:
 const { Task } = require('@botbind/klasa');
 
 module.exports = class extends Task {
-
-	async run({ channel, user, text }) {
-		const _channel = this.client.channels.get(channel);
-		return _channel.send(`<@${user}> You wanted me to remind you: ${text}`);
-	}
-
+  async run({ channel, user, text }) {
+    const _channel = this.client.channels.get(channel);
+    return _channel.send(`<@${user}> You wanted me to remind you: ${text}`);
+  }
 };
 ```
 

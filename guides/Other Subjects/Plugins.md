@@ -38,12 +38,14 @@ The only requirement for making a plugin is to make sure you export an unbound f
 
 ```javascript
 // index.js
-const { Client: { plugin } } = require('@botbind/klasa');
+const {
+  Client: { plugin }
+} = require('@botbind/klasa');
 module.exports = {
-	// [plugin] must be typed exactly like this.
-	[plugin]() {
-		this.klasaIsCool = true;
-	}
+  // [plugin] must be typed exactly like this.
+  [plugin]() {
+    this.klasaIsCool = true;
+  }
 };
 ```
 

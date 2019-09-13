@@ -6,8 +6,8 @@ Before we work with the social module, we need to update the built-in {@link Gat
 
 ```javascript
 KlasaClient.defaultUserSchema.add('experience', 'Integer', {
-	default: 0,
-	configurable: false
+  default: 0,
+  configurable: false
 });
 ```
 
@@ -23,19 +23,17 @@ Now that we have set up the schema, we will want to create a monitor:
 const { Monitor } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
+  constructor(...args) {
+    super(...args, { ignoreOthers: false });
+  }
 
-	constructor(...args) {
-		super(...args, { ignoreOthers: false });
-	}
+  async run(message) {
+    // If the message was not sent in a TextChannel, ignore it.
+    if (!message.guild) return;
 
-	async run(message) {
-		// If the message was not sent in a TextChannel, ignore it.
-		if (!message.guild) return;
-
-		// Update the user's configuration entry by adding 1 to it.
-		await message.author.settings.update('experience', message.author.settings.experience + 1);
-	}
-
+    // Update the user's configuration entry by adding 1 to it.
+    await message.author.settings.update('experience', message.author.settings.experience + 1);
+  }
 };
 ```
 
@@ -48,8 +46,8 @@ Some social bots have level up messages. How do we set it up? There are two ways
 
 ```javascript
 KlasaClient.defaultUserSchema.add('level', 'Integer', {
-	default: 0,
-	configurable: false
+  default: 0,
+  configurable: false
 });
 ```
 
@@ -65,34 +63,32 @@ Then inside our monitor's run method:
 const { Monitor } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
+  // Constructor
 
-	// Constructor
+  async run(message) {
+    // If the message was not sent in a TextChannel, ignore it.
+    if (!message.guild) return;
 
-	async run(message) {
-		// If the message was not sent in a TextChannel, ignore it.
-		if (!message.guild) return;
+    // Calculate the next value for experience.
+    const nextValue = message.author.settings.experience + 1;
 
-		// Calculate the next value for experience.
-		const nextValue = message.author.settings.experience + 1;
+    // Cache the current level.
+    const currentLevel = message.author.settings.level;
 
-		// Cache the current level.
-		const currentLevel = message.author.settings.level;
+    // Calculate the next level.
+    const nextLevel = Math.floor(0.1 * Math.sqrt(nextValue + 1));
 
-		// Calculate the next level.
-		const nextLevel = Math.floor(0.1 * Math.sqrt(nextValue + 1));
+    // Update the user's configuration entry by adding 1 to it, and update the level also.
+    await message.author.settings.update([['experience', nextValue], ['level', nextLevel]]);
 
-		// Update the user's configuration entry by adding 1 to it, and update the level also.
-		await message.author.settings.update([['experience', nextValue], ['level', nextLevel]]);
+    // If the current level and the next level are not the same, then it has increased, and you can send the message.
+    if (currentLevel !== nextLevel) {
+      // Send the message to the channel congratulating the user.
+      await message.send(`Congratulations! You leveled up to level **${currentLevel}**!`);
+    }
+  }
 
-		// If the current level and the next level are not the same, then it has increased, and you can send the message.
-		if (currentLevel !== nextLevel) {
-			// Send the message to the channel congratulating the user.
-			await message.send(`Congratulations! You leveled up to level **${currentLevel}**!`);
-		}
-	}
-
-	// Init
-
+  // Init
 };
 ```
 
@@ -110,17 +106,14 @@ Let's create a file in `commands/Social/points.js` with the following contents:
 const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
+  constructor(...args) {
+    super(...args, { description: 'Check how many points you have.' });
+  }
 
-	constructor(...args) {
-		super(...args, { description: 'Check how many points you have.' });
-	}
-
-	run(message) {
-		return message.send(`You have a total of ${message.author.settings.experience} experience points!`);
-	}
-
+  run(message) {
+    return message.send(`You have a total of ${message.author.settings.experience} experience points!`);
+  }
 };
-
 ```
 
 ### Level Command
@@ -131,15 +124,12 @@ Let's create a file in `commands/Social/level.js` with the following contents:
 const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
+  constructor(...args) {
+    super(...args, { description: 'Check your current level.' });
+  }
 
-	constructor(...args) {
-		super(...args, { description: 'Check your current level.' });
-	}
-
-	run(message) {
-		return message.send(`You are currently level ${message.author.settings.level}!`);
-	}
-
+  run(message) {
+    return message.send(`You are currently level ${message.author.settings.level}!`);
+  }
 };
-
 ```

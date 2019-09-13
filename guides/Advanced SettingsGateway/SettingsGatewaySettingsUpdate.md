@@ -28,7 +28,7 @@ message.guild.settings.update('userBlacklist', '272689325521502208', { action: '
 message.guild.settings.update([['prefix', 'k!'], ['language', 'es-ES']]);
 ```
 
-> **Note**: Some types require a Guild instance to work, for example, *channels*, *roles* and *members*.
+> **Note**: Some types require a Guild instance to work, for example, _channels_, _roles_ and _members_.
 
 > Additionally, if no 'action' option is passed to {@link SettingsUpdateOptions}, it'll assume the `auto` mode, which will add or remove depending on the existence of the key.
 

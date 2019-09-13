@@ -6,16 +6,14 @@ const AliasStore = require('./base/AliasStore');
  * @extends AliasStore
  */
 class SerializerStore extends AliasStore {
-
-	/**
-	 * Constructs our SerializerStore for use in Klasa
-	 * @since 0.5.0
-	 * @param {KlasaClient} client The Klasa Client
-	 */
-	constructor(client) {
-		super(client, 'serializers', Serializer);
-	}
-
+  /**
+   * Constructs our SerializerStore for use in Klasa
+   * @since 0.5.0
+   * @param {KlasaClient} client The Klasa Client
+   */
+  constructor(client) {
+    super(client, 'serializers', Serializer);
+  }
 }
 
 module.exports = SerializerStore;

@@ -7,47 +7,40 @@ const { Command, RichDisplay } = require('@botbind/klasa');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Command {
+  constructor(...args) {
+    super(...args, { description: 'Test RichDisplay' });
+  }
 
-	constructor(...args) {
-		super(...args, { description: 'Test RichDisplay' });
-	}
-
-	async run(message) {
-		return new RichDisplay()
-			.addPage(new MessageEmbed().setDescription('First page'))
-			.addPage(new MessageEmbed().setDescription('Second page'))
-			.run(await message.send('Loading...'));
-	}
-
+  async run(message) {
+    return new RichDisplay()
+      .addPage(new MessageEmbed().setDescription('First page'))
+      .addPage(new MessageEmbed().setDescription('Second page'))
+      .run(await message.send('Loading...'));
+  }
 };
 ```
 
 A more complex example with an actual usage is this:
 
 ```javascript
-const images = [
-	'https://i.imgur.com/gh3vYgj.jpg',
-	'https://i.imgur.com/vBV81m4.jpg',
-	'https://i.imgur.com/92hAsqe.jpg'
-];
+const images = ['https://i.imgur.com/gh3vYgj.jpg', 'https://i.imgur.com/vBV81m4.jpg', 'https://i.imgur.com/92hAsqe.jpg'];
 
 module.exports = class extends Command {
+  async run(message) {
+    const display = new RichDisplay(
+      new MessageEmbed()
+        .setColor(0x673ab7)
+        .setAuthor(this.client.user.name, this.client.user.avatarURL())
+        .setTitle('Norway Pictures Slideshow')
+        .setDescription('Scroll between the images using the provided reaction emotes.')
+    );
 
-	async run(message) {
-		const display = new RichDisplay(new MessageEmbed()
-			.setColor(0x673AB7)
-			.setAuthor(this.client.user.name, this.client.user.avatarURL())
-			.setTitle('Norway Pictures Slideshow')
-			.setDescription('Scroll between the images using the provided reaction emotes.')
-		);
+    for (let i = 0; i < images.length; i++) {
+      display.addPage(template => template.setImage(images[i]));
+    }
 
-		for (let i = 0; i < images.length; i++) {
-			display.addPage(template => template.setImage(images[i]));
-		}
-
-		return display.run(await message.send('Loading slideshow...'));
-	}
-
+    return display.run(await message.send('Loading slideshow...'));
+  }
 };
 ```
 
@@ -58,8 +51,9 @@ module.exports = class extends Command {
 First we create a new {@link RichDisplay} instance, but this time we pass in a [`MessageEmbed`](https://discord.js.org/#/docs/main/master/class/MessageEmbed) instance, which will represent our template, from which we will be able to extend upon to create our pages later on:
 
 ```javascript
-const display = new RichDisplay(new MessageEmbed()
-	/* ... */
+const display = new RichDisplay(
+  new MessageEmbed()
+  /* ... */
 );
 ```
 
@@ -67,7 +61,7 @@ This [`MessageEmbed`](https://discord.js.org/#/docs/main/master/class/MessageEmb
 
 ```javascript
 for (const image of images) {
-	display.addPage(template => template.setImage(image));
+  display.addPage(template => template.setImage(image));
 }
 ```
 
@@ -76,10 +70,8 @@ In our example, we will simply add a static image from the array we defined befo
 
 ```javascript
 display.addPage(template => {
-	template
-		.setImage(image)
-		.setColor(0xF44336);
-	// You can change everything of the template
+  template.setImage(image).setColor(0xf44336);
+  // You can change everything of the template
 });
 ```
 
@@ -87,12 +79,10 @@ Then, after the {@link RichDisplay} is setup, we return, executing it on a new m
 
 ```javascript
 module.exports = class extends Command {
-
-	async run(message) {
-		// ...
-		return display.run(await message.send('Loading slideshow...'));
-	}
-
+  async run(message) {
+    // ...
+    return display.run(await message.send('Loading slideshow...'));
+  }
 };
 ```
 
@@ -119,11 +109,9 @@ A simple example for this would be a filter that only allows the user who execut
 
 ```javascript
 module.exports = class extends Command {
-
-	async run(message) {
-		// ...
-		display.run(await message.send('Loading slideshow...'), { filter: (reaction, user) => user === message.author });
-	}
-
+  async run(message) {
+    // ...
+    display.run(await message.send('Loading slideshow...'), { filter: (reaction, user) => user === message.author });
+  }
 };
 ```

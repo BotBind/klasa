@@ -22,8 +22,8 @@ If you have other options, such as a prefix, then your main file would look like
 const { KlasaClient } = require('@botbind/klasa');
 
 new KlasaClient({
-	prefix: 'k!',
-	providers: { default: 'rethinkdb' }
+  prefix: 'k!',
+  providers: { default: 'rethinkdb' }
 }).login('A_BEAUTIFUL_TOKEN_AINT_IT?');
 ```
 
@@ -39,17 +39,17 @@ Let's say I want to add a new Gateway instance called `channels` that stores dat
 const { KlasaClient, Schema } = require('@botbind/klasa');
 
 const client = new KlasaClient({
-	prefix: 'k!',
-	providers: { default: 'rethinkdb' }
+  prefix: 'k!',
+  providers: { default: 'rethinkdb' }
 });
 
 // Now, we create it:
 client.gateways.register('channels', {
-	provider: 'postgresql',
-	schema: new Schema()
-		.add('disabledCommands', 'Command', { array: true })
-		.add('commandThrottle', 'Integer', { default: 5, min: 0, max: 60 })
-		.add('commandReset', 'Integer', { default: 2, min: 0, max: 30 })
+  provider: 'postgresql',
+  schema: new Schema()
+    .add('disabledCommands', 'Command', { array: true })
+    .add('commandThrottle', 'Integer', { default: 5, min: 0, max: 60 })
+    .add('commandReset', 'Integer', { default: 2, min: 0, max: 30 })
 });
 
 client.login('A_BEAUTIFUL_TOKEN_AINT_IT?');
@@ -69,16 +69,16 @@ This is available in 0.5.0 since the PR [#152](https://github.com/dirigeants/kla
 
 ```javascript
 new Klasa.Client({
-	prefix: 'k!',
-	providers: { default: 'json' },
-	gateways: {
-		guilds: { provider: 'rethinkdb' },
-		users: { provider: 'postgresql' }
-	}
+  prefix: 'k!',
+  providers: { default: 'json' },
+  gateways: {
+    guilds: { provider: 'rethinkdb' },
+    users: { provider: 'postgresql' }
+  }
 }).login('A_BEAUTIFUL_TOKEN_AINT_IT?');
 ```
 
-Where the *clientStorage* gateway would take the default options (json provider), the *guilds* gateway would use the rethinkdb provider, and finally the *users* one would use the postgresql provider. These options are {@link GatewayDriver.GatewayDriverAddOptions}.
+Where the _clientStorage_ gateway would take the default options (json provider), the _guilds_ gateway would use the rethinkdb provider, and finally the _users_ one would use the postgresql provider. These options are {@link GatewayDriver.GatewayDriverAddOptions}.
 
 ## Further Reading:
 

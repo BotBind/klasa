@@ -1,13 +1,11 @@
 const { Event } = require('@botbind/klasa');
 
 module.exports = class extends Event {
+  run(warning) {
+    if (this.client.ready) this.client.console.debug(warning);
+  }
 
-	run(warning) {
-		if (this.client.ready) this.client.console.debug(warning);
-	}
-
-	init() {
-		if (!this.client.options.consoleEvents.debug) this.disable();
-	}
-
+  init() {
+    if (!this.client.options.consoleEvents.debug) this.disable();
+  }
 };

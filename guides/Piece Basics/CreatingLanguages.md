@@ -6,32 +6,30 @@ Languages have the following syntax:
 const { Language } = require('@botbind/klasa');
 
 module.exports = class extends Language {
+  constructor(...args) {
+    super(...args, {
+      name: 'myLanguageName',
+      enabled: true
+    });
 
-	constructor(...args) {
-		super(...args, {
-			name: 'myLanguageName',
-			enabled: true
-		});
+    this.language = {
+      DEFAULT: key => `${key} has not been localized for en-US yet.`,
+      DEFAULT_LANGUAGE: 'Default Language',
+      SETTING_GATEWAY_EXPECTS_GUILD: 'The parameter <Guild> expects either a Guild or a Guild Object.',
+      // ...
+      COMMAND_CONF_RESET: (key, response) => `The key **${key}** has been reset to: \`${response}\``
+    };
+  }
 
-		this.language = {
-			DEFAULT: (key) => `${key} has not been localized for en-US yet.`,
-			DEFAULT_LANGUAGE: 'Default Language',
-			SETTING_GATEWAY_EXPECTS_GUILD: 'The parameter <Guild> expects either a Guild or a Guild Object.',
-			// ...
-			COMMAND_CONF_RESET: (key, response) => `The key **${key}** has been reset to: \`${response}\``
-		};
-	}
-
-	async init() {
-		/*
-		 * You can optionally define this method which will be run when the bot starts
-		 * (after login, so discord data is available via this.client)
-		 * please note, that as the Language is loaded before the client is loaded,
-		 * using this.client in a literal sense may throw errors such as:
-		 * this.client.user.username would throw "can't get property username of null"
-		 */
-	}
-
+  async init() {
+    /*
+     * You can optionally define this method which will be run when the bot starts
+     * (after login, so discord data is available via this.client)
+     * please note, that as the Language is loaded before the client is loaded,
+     * using this.client in a literal sense may throw errors such as:
+     * this.client.user.username would throw "can't get property username of null"
+     */
+  }
 };
 ```
 

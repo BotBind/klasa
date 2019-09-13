@@ -1,7 +1,6 @@
 ---
 name: Change or Remove Methods or Properties
 about: Modifies or removes currently existing functions
-
 ---
 
 ### Description of the PR

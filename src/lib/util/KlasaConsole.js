@@ -1,10 +1,10 @@
-const { Console } = require("console");
-const { inspect } = require("util");
-const fetch = require("node-fetch");
-const Colors = require("./Colors");
-const Timestamp = require("./Timestamp");
-const constants = require("./constants");
-const { mergeDefault } = require("./util");
+const { Console } = require('console');
+const { inspect } = require('util');
+const fetch = require('node-fetch');
+const Colors = require('./Colors');
+const Timestamp = require('./Timestamp');
+const constants = require('./constants');
+const { mergeDefault } = require('./util');
 
 /**
  * Klasa's console class, extends NodeJS Console class.
@@ -102,7 +102,7 @@ class KlasaConsole extends Console {
      * @type {NodeJS.WritableStream}
      * @readonly
      */
-    Object.defineProperty(this, "stdout", { value: options.stdout });
+    Object.defineProperty(this, 'stdout', { value: options.stdout });
 
     /**
      * The standard error output stream for this console, defaulted to process.stderr.
@@ -111,26 +111,16 @@ class KlasaConsole extends Console {
      * @type {NodeJS.WritableStream}
      * @readonly
      */
-    Object.defineProperty(this, "stderr", { value: options.stderr });
+    Object.defineProperty(this, 'stderr', { value: options.stderr });
 
-    Colors.useColors =
-      typeof options.useColor === "undefined"
-        ? this.stdout.isTTY || false
-        : options.useColor;
+    Colors.useColors = typeof options.useColor === 'undefined' ? this.stdout.isTTY || false : options.useColor;
 
     /**
      * Whether or not timestamps should be enabled for this console.
      * @since 0.5.0
      * @type {?Timestamp}
      */
-    this.template =
-      options.timestamps !== false
-        ? new Timestamp(
-            options.timestamps === true
-              ? "YYYY-MM-DD HH:mm:ss"
-              : options.timestamps
-          )
-        : null;
+    this.template = options.timestamps !== false ? new Timestamp(options.timestamps === true ? 'YYYY-MM-DD HH:mm:ss' : options.timestamps) : null;
 
     /**
      * The colors for this console.
@@ -141,8 +131,7 @@ class KlasaConsole extends Console {
 
     for (const [name, formats] of Object.entries(options.colors)) {
       this.colors[name] = {};
-      for (const [type, format] of Object.entries(formats))
-        this.colors[name][type] = new Colors(format);
+      for (const [type, format] of Object.entries(formats)) this.colors[name][type] = new Colors(format);
     }
 
     /**
@@ -153,8 +142,8 @@ class KlasaConsole extends Console {
     this.utc = options.utc;
 
     this.logAPI = options.logAPI || false;
-    this.endpoint = options.endpoint || "";
-    this.auth = options.auth || "";
+    this.endpoint = options.endpoint || '';
+    this.auth = options.auth || '';
   }
 
   /**
@@ -173,20 +162,19 @@ class KlasaConsole extends Console {
    * @param {string} [type="log"] The type of log, particularly useful for coloring
    * @private
    */
-  write(data, type = "log") {
+  write(data, type = 'log') {
     type = type.toLowerCase();
-    data = data.map(this.constructor._flatten).join("\n");
+    data = data.map(this.constructor._flatten).join('\n');
     const { time, message } = this.colors[type];
-    const timestamp = this.template ? time.format(`[${this.timestamp}]`) : "";
-    super[constants.DEFAULTS.CONSOLE.types[type] || "log"](
+    const timestamp = this.template ? time.format(`[${this.timestamp}]`) : '';
+    super[constants.DEFAULTS.CONSOLE.types[type] || 'log'](
       data
-        .split("\n")
+        .split('\n')
         .map(str => `${timestamp} ${message.format(str)}`)
-        .join("\n")
+        .join('\n')
     );
 
-    this.logAPI &&
-      this.constructor.postLogs(type, data, this.endpoint, this.auth);
+    if (this.logAPI) this.constructor.postLogs(type, data, this.endpoint, this.auth);
   }
 
   /**
@@ -196,7 +184,7 @@ class KlasaConsole extends Console {
    * @returns {void}
    */
   log(...data) {
-    this.write(data, "log");
+    this.write(data, 'log');
   }
 
   /**
@@ -206,7 +194,7 @@ class KlasaConsole extends Console {
    * @returns {void}
    */
   warn(...data) {
-    this.write(data, "warn");
+    this.write(data, 'warn');
   }
 
   /**
@@ -216,7 +204,7 @@ class KlasaConsole extends Console {
    * @returns {void}
    */
   error(...data) {
-    this.write(data, "error");
+    this.write(data, 'error');
   }
 
   /**
@@ -226,7 +214,7 @@ class KlasaConsole extends Console {
    * @returns {void}
    */
   debug(...data) {
-    this.write(data, "debug");
+    this.write(data, 'debug');
   }
 
   /**
@@ -236,7 +224,7 @@ class KlasaConsole extends Console {
    * @returns {void}
    */
   verbose(...data) {
-    this.write(data, "verbose");
+    this.write(data, 'verbose');
   }
 
   /**
@@ -246,7 +234,7 @@ class KlasaConsole extends Console {
    * @returns {void}
    */
   wtf(...data) {
-    this.write(data, "wtf");
+    this.write(data, 'wtf');
   }
 
   /**
@@ -257,31 +245,21 @@ class KlasaConsole extends Console {
    * @private
    */
   static _flatten(data) {
-    if (
-      typeof data === "undefined" ||
-      typeof data === "number" ||
-      data === null
-    )
-      return String(data);
-    if (typeof data === "string") return data;
-    if (typeof data === "object") {
+    if (typeof data === 'undefined' || typeof data === 'number' || data === null) return String(data);
+    if (typeof data === 'string') return data;
+    if (typeof data === 'object') {
       const isArray = Array.isArray(data);
-      if (isArray && data.every(datum => typeof datum === "string"))
-        return data.join("\n");
-      return (
-        data.stack ||
-        data.message ||
-        inspect(data, { depth: Number(isArray), colors: Colors.useColors })
-      );
+      if (isArray && data.every(datum => typeof datum === 'string')) return data.join('\n');
+      return data.stack || data.message || inspect(data, { depth: Number(isArray), colors: Colors.useColors });
     }
     return String(data);
   }
 
   static postLogs(level, data, endpoint, auth) {
     fetch(endpoint, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: auth
       },
       body: JSON.stringify({ level, message: data })

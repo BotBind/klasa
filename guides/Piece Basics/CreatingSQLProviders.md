@@ -12,31 +12,29 @@ This piece existed during SettingsGateway v1 (from 0.0.1 to 0.4.0) but got unifi
 const { SQLProvider, QueryBuilder } = require('@botbind/klasa');
 
 module.exports = class extends SQLProvider {
+  constructor(...args) {
+    super(...args);
 
-	constructor(...args) {
-		super(...args);
+    this.qb = new QueryBuilder();
+  }
 
-		this.qb = new QueryBuilder();
-	}
+  // All other Provider methods
 
-	// All other Provider methods
+  async addColumn() {
+    // The addColumn method which inserts/creates a new column to a table from the database.
+  }
 
-	async addColumn() {
-		// The addColumn method which inserts/creates a new column to a table from the database.
-	}
+  async removeColumn() {
+    // The removeColumn method which inserts/creates a new column to a table from the database.
+  }
 
-	async removeColumn() {
-		// The removeColumn method which inserts/creates a new column to a table from the database.
-	}
+  async updateColumn() {
+    // The updateColumn method which updates a column's datatype from a table from the database.
+  }
 
-	async updateColumn() {
-		// The updateColumn method which updates a column's datatype from a table from the database.
-	}
-
-	async getColumns() {
-		// The getColumns method which gets the name of all columns from a table from the database.
-	}
-
+  async getColumns() {
+    // The getColumns method which gets the name of all columns from a table from the database.
+  }
 };
 ```
 
@@ -61,47 +59,47 @@ The {@link QueryBuilder} class is a very special class. It was added in [PR#306 
 ```javascript
 // Create a QueryBuilder for PostgreSQL
 this.qb = new QueryBuilder({
-	// Declare the boolean type for PGSQL, which is 'BOOL'.
-	boolean: 'BOOL',
-	float: 'DOUBLE PRECISION',
-	// Sometimes, you want adaptative datatypes, if it's not going to store
-	// big numbers, you may want to use INTEGER instead of BIGINT. More options
-	// are given with smaller units, but depends on the database. For this case,
-	// we pass a function instead of a string, said function takes an instance of
-	// SchemaPiece.
-	integer: ({ max }) => max >= 2 ** 32 ? 'BIGINT' : 'INTEGER',
-	// You may want to define extra types for custom argument resolvers.
-	any: { type: 'JSON', resolver: (input) => `'${JSON.stringify(input)}'::json` },
-	json: { type: 'JSON', resolver: (input) => `'${JSON.stringify(input)}'::json` },
-	uuid: 'UUID',
+  // Declare the boolean type for PGSQL, which is 'BOOL'.
+  boolean: 'BOOL',
+  float: 'DOUBLE PRECISION',
+  // Sometimes, you want adaptative datatypes, if it's not going to store
+  // big numbers, you may want to use INTEGER instead of BIGINT. More options
+  // are given with smaller units, but depends on the database. For this case,
+  // we pass a function instead of a string, said function takes an instance of
+  // SchemaPiece.
+  integer: ({ max }) => max >= 2 ** 32 ? 'BIGINT' : 'INTEGER',
+  // You may want to define extra types for custom argument resolvers.
+  any: { type: 'JSON', resolver: input => `'${JSON.stringify(input)}'::json` },
+  json: { type: 'JSON', resolver: input => `'${JSON.stringify(input)}'::json` },
+  uuid: 'UUID',
 
-	// After the datatype definitions, we can define the following keys:
+  // After the datatype definitions, we can define the following keys:
 
-	// In PGSQL, arrays are supported, and they have the following notation. If it's not
-	// supported, it's advised to not use this option, it defaults to `() => 'TEXT'`, which
-	// enables the JSON.parse/JSON.stringify mechanism from SQLProvider.
+  // In PGSQL, arrays are supported, and they have the following notation. If it's not
+  // supported, it's advised to not use this option, it defaults to `() => 'TEXT'`, which
+  // enables the JSON.parse/JSON.stringify mechanism from SQLProvider.
 
-	// The following line converts a datatype, i.e. `INTEGER`, into `INTEGER[]` when the SchemaPiece
-	// takes arrays and they are supported by the SQL database.
-	array: type => `${type}[]`,
+  // The following line converts a datatype, i.e. `INTEGER`, into `INTEGER[]` when the SchemaPiece
+  // takes arrays and they are supported by the SQL database.
+  array: type => `${type}[]`,
 
-	// To reduce code duplication, and due to how similar arrays are in the same database,
-	// we may want to use an arrayResolver if our database supports arrays. This method also
-	// passes the resolver for single arrays, which we can use to map values while reducing code
-	// duplication.
+  // To reduce code duplication, and due to how similar arrays are in the same database,
+  // we may want to use an arrayResolver if our database supports arrays. This method also
+  // passes the resolver for single arrays, which we can use to map values while reducing code
+  // duplication.
 
-	// In PGSQL, an empty array is interpreted as '{}', and an array with elements, for example, the
-	// datatype is JSON[], then it will map each value with the resolver and wrap them in array[], making
-	// results similar to `array['{"a":true}'::json, '{"b":true}'::json]`, which is valid. Therefore, we
-	// resolve each value from the array with our resolver (look above, we have set up the resolver for json/any)
-	// and wrap each value in array[], or return '{}' if it's empty.
-	arrayResolver: (values, piece, resolver) => values.length ? `array[${values.map(value => resolver(value, piece)).join(', ')}]` : "'{}'",
+  // In PGSQL, an empty array is interpreted as '{}', and an array with elements, for example, the
+  // datatype is JSON[], then it will map each value with the resolver and wrap them in array[], making
+  // results similar to `array['{"a":true}'::json, '{"b":true}'::json]`, which is valid. Therefore, we
+  // resolve each value from the array with our resolver (look above, we have set up the resolver for json/any)
+  // and wrap each value in array[], or return '{}' if it's empty.
+  arrayResolver: (values, piece, resolver) => values.length ? `array[${values.map(value => resolver(value, piece)).join(', ')}]` : "'{}'",
 
-	// The following function wraps the datatype generated with the previous options and the
-	// default value from the SchemaPiece instance, plus the name. In PGSQL, names that have
-	// uppercase letters are automatically lowercased if they aren't between quotes, giving
-	// this option a chance. Normally, you don't need to define this.
-	formatDatatype: (name, datatype, def = null) => `"${name}" ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`
+  // The following function wraps the datatype generated with the previous options and the
+  // default value from the SchemaPiece instance, plus the name. In PGSQL, names that have
+  // uppercase letters are automatically lowercased if they aren't between quotes, giving
+  // this option a chance. Normally, you don't need to define this.
+  formatDatatype: (name, datatype, def = null) => `"${name}" ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`
 });
 ```
 
@@ -111,30 +109,30 @@ To not have to configure all types, we have a predefined set of datatypes in our
 
 ```javascript
 exports.DEFAULTS.QUERYBUILDER = {
-	datatypes: {
-		any: { type: 'TEXT' },
-		boolean: { type: 'BOOLEAN', resolver: value => value },
-		categorychannel: { type: 'VARCHAR(18)' },
-		channel: { type: 'VARCHAR(18)' },
-		command: { type: 'TEXT' },
-		float: { type: 'FLOAT', resolver: value => value },
-		guild: { type: 'VARCHAR(18)' },
-		integer: { type: 'INTEGER', resolver: value => value },
-		json: { type: 'JSON', resolver: (value) => `'${JSON.stringify(value).replace(/'/g, "''")}'` },
-		language: { type: 'VARCHAR(5)' },
-		role: { type: 'VARCHAR(18)' },
-		string: { type: ({ max }) => max ? `VARCHAR(${max})` : 'TEXT' },
-		textchannel: { type: 'VARCHAR(18)' },
-		url: { type: 'TEXT' },
-		user: { type: 'VARCHAR(18)' },
-		voicechannel: { type: 'VARCHAR(18)' }
-	},
-	queryBuilderOptions: {
-		array: () => 'TEXT',
-		resolver: (value) => `'${String(value).replace(/'/g, "''")}'`,
-		arrayResolver: (values) => `'${JSON.stringify(values)}'`,
-		formatDatatype: (name, datatype, def = null) => `${name} ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`
-	}
+  datatypes: {
+    any: { type: 'TEXT' },
+    boolean: { type: 'BOOLEAN', resolver: value => value },
+    categorychannel: { type: 'VARCHAR(18)' },
+    channel: { type: 'VARCHAR(18)' },
+    command: { type: 'TEXT' },
+    float: { type: 'FLOAT', resolver: value => value },
+    guild: { type: 'VARCHAR(18)' },
+    integer: { type: 'INTEGER', resolver: value => value },
+    json: { type: 'JSON', resolver: value => `'${JSON.stringify(value).replace(/'/g, "''")}'` },
+    language: { type: 'VARCHAR(5)' },
+    role: { type: 'VARCHAR(18)' },
+    string: { type: ({ max }) => max ? `VARCHAR(${max})` : 'TEXT' },
+    textchannel: { type: 'VARCHAR(18)' },
+    url: { type: 'TEXT' },
+    user: { type: 'VARCHAR(18)' },
+    voicechannel: { type: 'VARCHAR(18)' }
+  },
+  queryBuilderOptions: {
+    array: () => 'TEXT',
+    resolver: value => `'${String(value).replace(/'/g, "''")}'`,
+    arrayResolver: values => `'${JSON.stringify(values)}'`,
+    formatDatatype: (name, datatype, def = null) => `${name} ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`
+  }
 };
 ```
 

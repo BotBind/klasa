@@ -12,28 +12,25 @@ treated the same.
 const { Inhibitor } = require('@botbind/klasa');
 
 module.exports = class extends Inhibitor {
+  constructor(...args) {
+    super(...args, {
+      name: 'myInhibitorName',
+      enabled: true,
+      spamProtection: false
+    });
+  }
 
-	constructor(...args) {
-		super(...args, {
-			name: 'myInhibitorName',
-			enabled: true,
-			spamProtection: false
-		});
-	}
+  async run(message, command) {
+    // This is where you place the code you want to run for your inhibitor
+  }
 
-	async run(message, command) {
-		// This is where you place the code you want to run for your inhibitor
-	}
-
-	async init() {
-		/*
-		 * You can optionally define this method which will be run when the bot starts
-		 * (after login, so discord data is available via this.client)
-		 */
-	}
-
+  async init() {
+    /*
+     * You can optionally define this method which will be run when the bot starts
+     * (after login, so discord data is available via this.client)
+     */
+  }
 };
-
 ```
 
 ## Options

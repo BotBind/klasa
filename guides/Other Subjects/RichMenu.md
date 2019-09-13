@@ -8,47 +8,46 @@ An example of how {@link RichMenu} could be used is in a `help`-like command, th
 
 ```javascript
 module.exports = class extends Command {
+  constructor(...args) {
+    super(...args);
+    this.menu = null;
+  }
 
-	constructor(...args) {
-		super(...args);
-		this.menu = null;
-	}
+  async run(message) {
+    const collector = await this.menu.run(await message.send('Loading commands...'));
 
-	async run(message) {
-		const collector = await this.menu.run(await message.send('Loading commands...'));
+    const choice = await collector.selection;
+    if (choice === null) {
+      return collector.message.delete();
+    }
 
-		const choice = await collector.selection;
-		if (choice === null) {
-			return collector.message.delete();
-		}
+    const command = this.client.commands.get(this.menu.options[choice].name);
+    const info = new MessageEmbed()
+      .setTitle(`Command \`${message.guild.settings.prefix}${command.name}\``)
+      .setDescription(typeof command.description === 'function' ? command.description(message) : command.description)
+      .addField('Usage:', command.usageString);
 
-		const command = this.client.commands.get(this.menu.options[choice].name);
-		const info = new MessageEmbed()
-			.setTitle(`Command \`${message.guild.settings.prefix}${command.name}\``)
-			.setDescription(typeof command.description === 'function' ? command.description(message) : command.description)
-			.addField('Usage:', command.usageString);
+    if (command.extendedHelp && command.extendedHelp !== '') {
+      const extendHelp = typeof command.extendedHelp === 'function' ? command.extendedHelp(message) : command.extendedHelp;
+      info.addField('Help:', extendHelp);
+    }
 
-		if (command.extendedHelp && command.extendedHelp !== '') {
-			const extendHelp = typeof command.extendedHelp === 'function' ? command.extendedHelp(message) : command.extendedHelp;
-			info.addField('Help:', extendHelp);
-		}
+    return message.sendEmbed(info);
+  }
 
-		return message.sendEmbed(info);
-	}
+  init() {
+    this.menu = new RichMenu(
+      new MessageEmbed()
+        .setColor(0x673ab7)
+        .setAuthor(this.client.user.username, this.client.user.displayAvatarURL())
+        .setTitle('Advanced Commands Help:')
+        .setDescription('Use the arrow reactions to scroll between pages.\nUse number reactions to select an option.')
+    );
 
-	init() {
-		this.menu = new RichMenu(new MessageEmbed()
-			.setColor(0x673AB7)
-			.setAuthor(this.client.user.username, this.client.user.displayAvatarURL())
-			.setTitle('Advanced Commands Help:')
-			.setDescription('Use the arrow reactions to scroll between pages.\nUse number reactions to select an option.')
-		);
-
-		for (const command of this.client.commands.values()) {
-			this.menu.addOption(command.name, command.description);
-		}
-	}
-
+    for (const command of this.client.commands.values()) {
+      this.menu.addOption(command.name, command.description);
+    }
+  }
 };
 ```
 
@@ -62,7 +61,7 @@ We begin by adding the options, which will be listed in the same order we define
 
 ```javascript
 for (const command of this.client.commands.values()) {
-	menu.addOption(command.name, command.description);
+  menu.addOption(command.name, command.description);
 }
 ```
 
@@ -71,13 +70,11 @@ We will store the resulting {@link ReactionHandler} to later access the selected
 
 ```javascript
 module.exports = class extends Command {
-
-	async run(message) {
-		// ...
-		const collector = await menu.run(await message.send('Loading Commands...'));
-		// ...
-	}
-
+  async run(message) {
+    // ...
+    const collector = await menu.run(await message.send('Loading Commands...'));
+    // ...
+  }
 };
 ```
 
@@ -85,13 +82,11 @@ We will also need to [`await`](https://developer.mozilla.org/en-US/docs/Web/Java
 
 ```javascript
 module.exports = class extends Command {
-
-	async run(message) {
-		// ...
-		const choice = await collector.selection;
-		// ...
-	}
-
+  async run(message) {
+    // ...
+    const choice = await collector.selection;
+    // ...
+  }
 };
 ```
 
@@ -105,9 +100,9 @@ Finally, we show the user the selected command by editing the original [`Message
 
 ```javascript
 const info = new MessageEmbed()
-	.setTitle(`Command \`${message.guild.settings.prefix}${command.name}\``)
-	.setDescription(typeof command.description === 'function' ? command.description(message) : command.description)
-	.addField('Usage:', command.usageString);
+  .setTitle(`Command \`${message.guild.settings.prefix}${command.name}\``)
+  .setDescription(typeof command.description === 'function' ? command.description(message) : command.description)
+  .addField('Usage:', command.usageString);
 
 collector.message.edit(info);
 ```

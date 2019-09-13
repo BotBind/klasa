@@ -7,25 +7,23 @@ Finalizers have the following syntax:
 const { Finalizer } = require('@botbind/klasa');
 
 module.exports = class extends Finalizer {
+  constructor(...args) {
+    super(...args, {
+      name: 'myFinalizerName',
+      enabled: true
+    });
+  }
 
-	constructor(...args) {
-		super(...args, {
-			name: 'myFinalizerName',
-			enabled: true
-		});
-	}
+  run(message, command, response, runTime) {
+    // This is where you place the code you want to run for your finalizer
+  }
 
-	run(message, command, response, runTime) {
-		// This is where you place the code you want to run for your finalizer
-	}
-
-	async init() {
-		/*
-		 * You can optionally define this method which will be run when the bot starts
-		 * (after login, so discord data is available via this.client)
-		 */
-	}
-
+  async init() {
+    /*
+     * You can optionally define this method which will be run when the bot starts
+     * (after login, so discord data is available via this.client)
+     */
+  }
 };
 ```
 

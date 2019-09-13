@@ -34,8 +34,7 @@ A common example for bots is to have a configurable chat log in Discord, for sim
 KlasaClient.defaultGuildSchema.add('channelLog', 'TextChannel');
 
 // Adding the key to a channels folder
-KlasaClient.defaultGuildSchema.add('channels', folder => folder
-	.add('log', 'TextChannel'));
+KlasaClient.defaultGuildSchema.add('channels', folder => folder.add('log', 'TextChannel'));
 ```
 
 Where the first option would be accessible from `message.guild.settings.channelLog`, and the second from `message.guild.settings.channels.log`. Users would configure them with `[p]conf set channelLog #logs` or `[p]conf set channels.log #logs`, depending on how you structure it. (`[p]` being your bot's prefix).
@@ -52,13 +51,9 @@ A full example of a correctly configured schema would be the following:
 
 ```javascript
 KlasaClient.defaultGuildSchema
-	.add('channels', folder => folder
-		.add('log', 'TextChannel')
-		.add('announcement', 'TextChannel'))
-	.add('roles', folder => folder
-		.add('administrator', 'Role')
-		.add('moderator', 'Role'))
-	.add('disabledChannels', 'TextChannel', { array: true });
+  .add('channels', folder => folder.add('log', 'TextChannel').add('announcement', 'TextChannel'))
+  .add('roles', folder => folder.add('administrator', 'Role').add('moderator', 'Role'))
+  .add('disabledChannels', 'TextChannel', { array: true });
 ```
 
 > **NOTE**: The type argument is not case sensitive, they are lowercased. For readability, you may want to use the case you are comfortable with.

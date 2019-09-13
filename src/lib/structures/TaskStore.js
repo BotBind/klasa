@@ -6,16 +6,14 @@ const Store = require('./base/Store');
  * @extends Store
  */
 class TaskStore extends Store {
-
-	/**
-	 * Constructs our TaskStore for use in Klasa
-	 * @since 0.5.0
-	 * @param {KlasaClient} client The Klasa client
-	 */
-	constructor(client) {
-		super(client, 'tasks', Task);
-	}
-
+  /**
+   * Constructs our TaskStore for use in Klasa
+   * @since 0.5.0
+   * @param {KlasaClient} client The Klasa client
+   */
+  constructor(client) {
+    super(client, 'tasks', Task);
+  }
 }
 
 module.exports = TaskStore;

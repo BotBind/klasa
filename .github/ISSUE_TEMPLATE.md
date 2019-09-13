@@ -3,7 +3,6 @@
 ### Code or steps to reproduce
 
 ```js
-
 ```
 
 <!--

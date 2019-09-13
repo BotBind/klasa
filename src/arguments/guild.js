@@ -1,11 +1,9 @@
 const { Argument } = require('@botbind/klasa');
 
 module.exports = class extends Argument {
-
-	run(arg, possible, message) {
-		const guild = this.constructor.regex.snowflake.test(arg) ? this.client.guilds.get(arg) : null;
-		if (guild) return guild;
-		throw message.language.get('RESOLVER_INVALID_GUILD', possible.name);
-	}
-
+  run(arg, possible, message) {
+    const guild = this.constructor.regex.snowflake.test(arg) ? this.client.guilds.get(arg) : null;
+    if (guild) return guild;
+    throw message.language.get('RESOLVER_INVALID_GUILD', possible.name);
+  }
 };

@@ -4,35 +4,31 @@ Arguments are the resolvers used to convert strings padded by users, into fully 
 const { Argument } = require('@botbind/klasa');
 
 module.exports = class extends Argument {
-
-	run(arg, possible, message) {
-		// This is where you want to validate arg and return a resolved param or throw an error
-	}
-
+  run(arg, possible, message) {
+    // This is where you want to validate arg and return a resolved param or throw an error
+  }
 };
 ```
 
 The run method in {@link Argument} takes 3 parameters:
 
-| Name             | Type                 | Description                            |
-| ---------------- | -------------------- | -------------------------------------- |
-| **arg**          | string               | The parameter given to parse           |
-| **possible**     | {@link Possible}     | The Possible instance that is running  |
-| **message**      | {@link KlasaMessage} | The message that triggered the command |
+| Name         | Type                 | Description                            |
+| ------------ | -------------------- | -------------------------------------- |
+| **arg**      | string               | The parameter given to parse           |
+| **possible** | {@link Possible}     | The Possible instance that is running  |
+| **message**  | {@link KlasaMessage} | The message that triggered the command |
 
 ```javascript
 const { Argument } = require('@botbind/klasa');
 const REGEX_EMOJI = /^(?:<a?:\w{2,32}:)?(\d{17,19})>?$/;
 
 module.exports = class extends Argument {
-
-	run(arg, possible, message) {
-		const results = REGEX_EMOJI.exec(arg);
-		const emoji = results ? this.client.emojis.get(results[1]) : null;
-		if (emoji) return emoji;
-		throw message.language.get('RESOLVER_INVALID_EMOJI', possible.name);
-	}
-
+  run(arg, possible, message) {
+    const results = REGEX_EMOJI.exec(arg);
+    const emoji = results ? this.client.emojis.get(results[1]) : null;
+    if (emoji) return emoji;
+    throw message.language.get('RESOLVER_INVALID_EMOJI', possible.name);
+  }
 };
 ```
 
@@ -49,22 +45,20 @@ And now, you can use this type in a command! For example, the following:
 const { Command } = require('@botbind/klasa');
 
 module.exports = class extends Command {
+  constructor(...args) {
+    super(...args, {
+      description: 'Get the name of an emoji.',
+      usage: '<emoji:emoji>'
+    });
+  }
 
-	constructor(...args) {
-		super(...args, {
-			description: 'Get the name of an emoji.',
-			usage: '<emoji:emoji>'
-		});
-	}
-
-	run(msg, [emoji]) {
-		return msg.send(`The name of the emoji ${emoji} is: ${emoji.name}`);
-	}
-
+  run(msg, [emoji]) {
+    return msg.send(`The name of the emoji ${emoji} is: ${emoji.name}`);
+  }
 };
 ```
 
->**note:** An Emoji argument already comes included with Klasa.
+> **note:** An Emoji argument already comes included with Klasa.
 
 ## Examples
 

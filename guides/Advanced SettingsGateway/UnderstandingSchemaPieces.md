@@ -19,7 +19,7 @@ There are multiple options that configure the piece, they are:
 
 ## Default option
 
-*The default option is optional, but, what is its default value?*
+_The default option is optional, but, what is its default value?_
 
 The default option is one of the last options to default, **array** defaults to `false`, **max** and **min** defaults to `null`, **configurable** defaults to either `true` or `false`, the latter if **type** is `any`; and **type** is always obligatory.
 
@@ -35,9 +35,9 @@ Internally, we use this option to avoid users from disabling guarded commands (c
 
 ```javascript
 const filter = (client, command, piece, guild) => {
-	if (client.commands.get(command).guarded) {
-		throw (guild ? guild.language : client.languages.default).get('COMMAND_CONF_GUARDED', command);
-	}
+  if (client.commands.get(command).guarded) {
+    throw (guild ? guild.language : client.languages.default).get('COMMAND_CONF_GUARDED', command);
+  }
 };
 ```
 

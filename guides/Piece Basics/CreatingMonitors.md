@@ -12,32 +12,30 @@ don't pass a command parameter to them.
 const { Monitor } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
+  constructor(...args) {
+    super(...args, {
+      name: 'yourMonitorName',
+      enabled: true,
+      ignoreBots: true,
+      ignoreSelf: true,
+      ignoreOthers: true,
+      ignoreWebhooks: true,
+      ignoreEdits: true,
+      ignoreBlacklistedUsers: true,
+      ignoreBlacklistedGuilds: true
+    });
+  }
 
-	constructor(...args) {
-		super(...args, {
-			name: 'yourMonitorName',
-			enabled: true,
-			ignoreBots: true,
-			ignoreSelf: true,
-			ignoreOthers: true,
-			ignoreWebhooks: true,
-			ignoreEdits: true,
-			ignoreBlacklistedUsers: true,
-			ignoreBlacklistedGuilds: true
-		});
-	}
+  run(message) {
+    // This is where you place the code you want to run for your monitor
+  }
 
-	run(message) {
-		// This is where you place the code you want to run for your monitor
-	}
-
-	async init() {
-		/*
-		 * You can optionally define this method which will be run when the bot starts
-		 * (after login, so discord data is available via this.client)
-		 */
-	}
-
+  async init() {
+    /*
+     * You can optionally define this method which will be run when the bot starts
+     * (after login, so discord data is available via this.client)
+     */
+  }
 };
 ```
 
@@ -45,7 +43,7 @@ module.exports = class extends Monitor {
 
 {@typedef MonitorOptions}
 
->As with all other pieces, you can omit any optional option that match the default values.
+> As with all other pieces, you can omit any optional option that match the default values.
 
 ## Examples
 

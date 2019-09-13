@@ -30,33 +30,31 @@ const { Serializer } = require('@botbind/klasa');
 
 // Extend Serializer to create your own. These are loaded from  the Serializers folder.
 module.exports = class Date extends Serializer {
+  constructor(...args) {
+    // If you want aliases for this, you can set them here.
+    super(...args, { aliases: [] });
+  }
 
-	constructor(...args) {
-		// If you want aliases for this, you can set them here.
-		super(...args, { aliases: [] });
-	}
+  // This function is used to tell Settings what this data is actually representing
+  deserialize(data) {
+    // Assuming data is stored in milliseconds
+    // We can turn this date, given from your database, into a readable date.
+    // new Date Object with our specified data
+    return new Date(data);
+  }
 
-	// This function is used to tell Settings what this data is actually representing
-	deserialize(data) {
-		// Assuming data is stored in milliseconds
-		// We can turn this date, given from your database, into a readable date.
-		// new Date Object with our specified data
-		return new Date(data);
-	}
+  // This function is used to tell Settings what this data should be stored as
+  serialize(value) {
+    // Convert Date Object back into milliseconds so it can be stored by the database.
+    // Value here is our Date Object from deserialized.
+    return value.getTime();
+  }
 
-	// This function is used to tell Settings what this data should be stored as
-	serialize(value) {
-		// Convert Date Object back into milliseconds so it can be stored by the database.
-		// Value here is our Date Object from deserialized.
-		return value.getTime();
-	}
-
-	// This function is used to tell Settings what we should display the deserialized data as.
-	stringify(value) {
-		// Value here is our Date Object from deserialized
-		return value.toDateString();
-	}
-
+  // This function is used to tell Settings what we should display the deserialized data as.
+  stringify(value) {
+    // Value here is our Date Object from deserialized
+    return value.toDateString();
+  }
 };
 ```
 

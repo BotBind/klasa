@@ -4,23 +4,21 @@ Serializers are pieces used for SettingsGateway's core to serialize and deserial
 const { Serializer } = require('@botbind/klasa');
 
 module.exports = class extends Serializer {
+  constructor(...args) {
+    super(...args, { aliases: [] });
+  }
 
-	constructor(...args) {
-		super(...args, { aliases: [] });
-	}
+  async deserialize(data, piece, language, guild) {
+    // Code to resolve primitives into resolved data for the cache
+  }
 
-	async deserialize(data, piece, language, guild) {
-		// Code to resolve primitives into resolved data for the cache
-	}
+  serialize(value) {
+    // Code to convert resolved data into primitives for database storage
+  }
 
-	serialize(value) {
-		// Code to convert resolved data into primitives for database storage
-	}
-
-	stringify(value) {
-		// Code to convert the value into a meaningful string.
-	}
-
+  stringify(value) {
+    // Code to convert the value into a meaningful string.
+  }
 };
 ```
 

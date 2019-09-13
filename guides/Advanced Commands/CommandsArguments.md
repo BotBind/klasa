@@ -4,13 +4,13 @@ This is an in-depth tutorial for **Klasa's Usage**. Unlike many other frameworks
 
 What are command arguments and how do they differ from parameters? Arguments are raw strings based on the input by the user split based on {@link Command#usageDelim} or {@link Command#quotedStringSupport}. A resolver converts the arguments to parameters based on the possible usage type.
 
-For example, let's say you want a command to take a user and a channel, then you just put a string to usage being: `'<selectedUser:user> <selectedChannel:channel>'`, that tells the __internal parser__ to take and parse them, if both validate correctly in the command output (i.e. `[p]command @user #channel`), the internal parser will pass an instance of {@link KlasaUser} and {@link external:Channel} inside an array, being **parameters**.
+For example, let's say you want a command to take a user and a channel, then you just put a string to usage being: `'<selectedUser:user> <selectedChannel:channel>'`, that tells the **internal parser** to take and parse them, if both validate correctly in the command output (i.e. `[p]command @user #channel`), the internal parser will pass an instance of {@link KlasaUser} and {@link external:Channel} inside an array, being **parameters**.
 
 In short, usage is what defines the input that the command and internal parser should take, message arguments ({@link KlasaMessage#args}) are the raw arguments (array of string), and message parameters ({@link KlasaMessage#params}) are an array with the parsed arguments.
 
 ## Structure
 
-The command usage is an option for {@link CommandOptions.usage} and **requires** a {@link CommandOptions.usageDelim} string when there are multiple arguments. Why? Because if there's no usageDelim, `undefined` is implied, and [String#split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) doesn't split the string but converts it to a __single value array__ (message arguments), you definitively don't want this behaviour when you have two command arguments because it'll require at least two message arguments.
+The command usage is an option for {@link CommandOptions.usage} and **requires** a {@link CommandOptions.usageDelim} string when there are multiple arguments. Why? Because if there's no usageDelim, `undefined` is implied, and [String#split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) doesn't split the string but converts it to a **single value array** (message arguments), you definitively don't want this behaviour when you have two command arguments because it'll require at least two message arguments.
 
 The structure is rather simple, {@link CommandOptions.usage} is always a string and not an object, and is inspired by the [CLI format standard](http://docopt.org/), inheriting the meaning for the tokens `<>` (required arguments), `[]` (optional elements), `|` (mutually exclusive or multiple choice) and `...` (repeating arguments), but adds more elements.
 
@@ -24,9 +24,9 @@ Arguments can **only** have one requirement level and cannot be into another, ne
 
 But in difference to the CLI command format standard, we have **our own standard**, and we implement more things such the aforementioned **semi-required** arguments, and more.
 
-A more in-depth vision of arguments is that they are *arrays* of "possibles", that is, even if we aren't using the `|` token which defines extra types/possibles, there's always one for each argument. So `<nameOne:typeOne|nameTwo:typeTwo>` is an argument with **two possibles**. Each possible has their own structure and options:
+A more in-depth vision of arguments is that they are _arrays_ of "possibles", that is, even if we aren't using the `|` token which defines extra types/possibles, there's always one for each argument. So `<nameOne:typeOne|nameTwo:typeTwo>` is an argument with **two possibles**. Each possible has their own structure and options:
 
-- They are grouped into a "Tag" or "argument", a Tag is a parsed argument that contains these multiple possibles, therefore, possibles inherit the required level from them. For example, if a Tag is required and has 3 possibles, the __internal parser__ will try to parse all three until it finds one that resolves, in the opposite case (no match), it'll ask for one of them.
+- They are grouped into a "Tag" or "argument", a Tag is a parsed argument that contains these multiple possibles, therefore, possibles inherit the required level from them. For example, if a Tag is required and has 3 possibles, the **internal parser** will try to parse all three until it finds one that resolves, in the opposite case (no match), it'll ask for one of them.
 - They have their own names, types, and options. You can have a Tag with multiple types, for example, `<target:member|userID:string>` is a Tag with two possibles, one that will try to resolve into a `GuildMember` instance, or a `string` if it did not match (be careful as the `string` type is "lazy": it always resolve, so they should put last).
 
 ## Repeating arguments

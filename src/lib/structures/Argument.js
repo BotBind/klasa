@@ -8,49 +8,47 @@ const { MENTION_REGEX } = require('../util/constants');
  * @extends AliasPiece
  */
 class Argument extends AliasPiece {
+  /**
+   * The run method to be overwritten in actual Arguments
+   * @since 0.5.0
+   * @param {string} argument The string argument string to resolve
+   * @param {Possible} possible This current usage possible
+   * @param {KlasaMessage} message The message that triggered the command
+   * @abstract
+   */
+  async run() {
+    // Defined in extension Classes
+    throw new Error(`The run method has not been implemented by ${this.type}:${this.name}.`);
+  }
 
-	/**
-	 * The run method to be overwritten in actual Arguments
-	 * @since 0.5.0
-	 * @param {string} argument The string argument string to resolve
-	 * @param {Possible} possible This current usage possible
-	 * @param {KlasaMessage} message The message that triggered the command
-	 * @abstract
-	 */
-	async run() {
-		// Defined in extension Classes
-		throw new Error(`The run method has not been implemented by ${this.type}:${this.name}.`);
-	}
-
-	/**
-	 * Checks min and max values
-	 * @since 0.5.0
-	 * @param {KlasaClient} client The client of this bot
-	 * @param {number} value The value to check against
-	 * @param {?number} min The minimum value
-	 * @param {?number} max The maximum value
-	 * @param {Possible} possible The id of the current possible usage
-	 * @param {KlasaMessage} message The message that triggered the command
-	 * @param {string} suffix An error suffix
-	 * @returns {boolean}
-	 * @private
-	 */
-	static minOrMax(client, value, min = null, max = null, possible, message, suffix) {
-		suffix = suffix ? (message ? message.language : client.languages.default).get(suffix) : '';
-		if (min !== null && max !== null) {
-			if (value >= min && value <= max) return true;
-			if (min === max) throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_EXACTLY', possible.name, min, suffix);
-			throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_BOTH', possible.name, min, max, suffix);
-		} else if (min !== null) {
-			if (value >= min) return true;
-			throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_MIN', possible.name, min, suffix);
-		} else if (max !== null) {
-			if (value <= max) return true;
-			throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_MAX', possible.name, max, suffix);
-		}
-		return true;
-	}
-
+  /**
+   * Checks min and max values
+   * @since 0.5.0
+   * @param {KlasaClient} client The client of this bot
+   * @param {number} value The value to check against
+   * @param {?number} min The minimum value
+   * @param {?number} max The maximum value
+   * @param {Possible} possible The id of the current possible usage
+   * @param {KlasaMessage} message The message that triggered the command
+   * @param {string} suffix An error suffix
+   * @returns {boolean}
+   * @private
+   */
+  static minOrMax(client, value, min = null, max = null, possible, message, suffix) {
+    suffix = suffix ? (message ? message.language : client.languages.default).get(suffix) : '';
+    if (min !== null && max !== null) {
+      if (value >= min && value <= max) return true;
+      if (min === max) throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_EXACTLY', possible.name, min, suffix);
+      throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_BOTH', possible.name, min, max, suffix);
+    } else if (min !== null) {
+      if (value >= min) return true;
+      throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_MIN', possible.name, min, suffix);
+    } else if (max !== null) {
+      if (value <= max) return true;
+      throw (message ? message.language : client.languages.default).get('RESOLVER_MINMAX_MAX', possible.name, max, suffix);
+    }
+    return true;
+  }
 }
 
 /**
