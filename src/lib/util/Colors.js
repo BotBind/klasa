@@ -127,7 +127,7 @@ Colors.CLOSE = {
   hidden: 28,
   strikethrough: 29,
   text: 39,
-  background: 49
+  background: 49,
 };
 
 /**
@@ -144,7 +144,7 @@ Colors.STYLES = {
   underline: 4,
   inverse: 7,
   hidden: 8,
-  strikethrough: 9
+  strikethrough: 9,
 };
 
 /**
@@ -171,7 +171,7 @@ Colors.TEXTS = {
   lightblue: 94,
   lightmagenta: 95,
   lightcyan: 96,
-  white: 97
+  white: 97,
 };
 
 /**
@@ -198,7 +198,7 @@ Colors.BACKGROUNDS = {
   lightblue: 104,
   lightmagenta: 105,
   lightcyan: 106,
-  white: 107
+  white: 107,
 };
 
 module.exports = Colors;

@@ -174,7 +174,7 @@ class Piece {
       path: this.path,
       name: this.name,
       type: this.type,
-      enabled: this.enabled
+      enabled: this.enabled,
     };
   }
 }

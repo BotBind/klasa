@@ -205,7 +205,7 @@ class ScheduledTask {
       time: this.time.getTime(),
       catchUp: this.catchUp,
       data: this.data,
-      repeat: this.recurring ? this.recurring.cron : null
+      repeat: this.recurring ? this.recurring.cron : null,
     };
   }
 

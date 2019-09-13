@@ -41,7 +41,7 @@ module.exports = class extends Command {
         .setColor(0x673ab7)
         .setAuthor(this.client.user.username, this.client.user.displayAvatarURL())
         .setTitle('Advanced Commands Help:')
-        .setDescription('Use the arrow reactions to scroll between pages.\nUse number reactions to select an option.')
+        .setDescription('Use the arrow reactions to scroll between pages.\nUse number reactions to select an option.'),
     );
 
     for (const command of this.client.commands.values()) {

@@ -22,7 +22,7 @@ module.exports = class extends Monitor {
       ignoreWebhooks: true,
       ignoreEdits: true,
       ignoreBlacklistedUsers: true,
-      ignoreBlacklistedGuilds: true
+      ignoreBlacklistedGuilds: true,
     });
   }
 

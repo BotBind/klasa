@@ -62,7 +62,7 @@ class RichMenu extends RichDisplay {
       six: '6⃣',
       seven: '7⃣',
       eight: '8⃣',
-      nine: '9⃣'
+      nine: '9⃣',
     });
 
     /**

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const {
   Permissions,
-  Permissions: { FLAGS }
+  Permissions: { FLAGS },
 } = Discord;
 const path = require('path');
 
@@ -517,7 +517,7 @@ KlasaClient.defaultGuildSchema = new Schema()
     array: true,
     filter: (client, command, piece, language) => {
       if (command.guarded) throw language.get('COMMAND_CONF_GUARDED', command.name);
-    }
+    },
   });
 
 /**

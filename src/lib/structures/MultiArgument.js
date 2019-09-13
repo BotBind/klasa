@@ -28,7 +28,7 @@ class MultiArgument extends Argument {
     const { min, max } = possible;
     const {
       args,
-      usage: { usageDelim }
+      usage: { usageDelim },
     } = message.prompter;
     const index = args.indexOf(argument);
     const rest = args.splice(index, args.length - index);

@@ -2,7 +2,7 @@ const { Extendable } = require('@botbind/klasa');
 const {
   Permissions: { FLAGS },
   DMChannel,
-  TextChannel
+  TextChannel,
 } = require('discord.js');
 
 module.exports = class extends Extendable {

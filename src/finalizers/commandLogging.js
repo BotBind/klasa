@@ -8,7 +8,7 @@ module.exports = class extends Finalizer {
     this.shard = new Colors({ background: 'cyan', text: 'black' });
     this.channel = {
       text: new Colors({ background: 'green', text: 'black' }),
-      dm: new Colors({ background: 'magenta' })
+      dm: new Colors({ background: 'magenta' }),
     };
   }
 
@@ -22,8 +22,8 @@ module.exports = class extends Finalizer {
         `${command.name}(${message.args ? message.args.join(', ') : ''})`,
         this.reprompted[Number(message.reprompted)].format(`[${timer.stop()}]`),
         this.user.format(`${message.author.username}[${message.author.id}]`),
-        this.channel[type].format(this[type](message))
-      ].join(' ')
+        this.channel[type].format(this[type](message)),
+      ].join(' '),
     );
   }
 

@@ -126,7 +126,7 @@ class GatewayDriver {
     return {
       keys: [...this.keys],
       ready: this.ready,
-      ...Object.assign({}, [...this].map(([key, value]) => ({ [key]: value.toJSON() })))
+      ...Object.assign({}, [...this].map(([key, value]) => ({ [key]: value.toJSON() }))),
     };
   }
 

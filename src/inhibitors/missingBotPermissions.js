@@ -1,7 +1,7 @@
 const { Inhibitor, util } = require('@botbind/klasa');
 const {
   Permissions,
-  Permissions: { FLAGS }
+  Permissions: { FLAGS },
 } = require('discord.js');
 
 module.exports = class extends Inhibitor {

@@ -15,7 +15,7 @@ module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
       description: 'Check your Overwatch stats.',
-      usage: '<battletag:reg/(\\w{3,12})#(\\d{4,5})/i>'
+      usage: '<battletag:reg/(\\w{3,12})#(\\d{4,5})/i>',
     });
   }
 
@@ -32,7 +32,7 @@ module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
       description: 'Check your Overwatch stats.',
-      usage: '<battletag:reg/(\\w{3,12})#(\\d{4,5})/i>'
+      usage: '<battletag:reg/(\\w{3,12})#(\\d{4,5})/i>',
     });
 
     this.customizeResponse('battletag', 'You must insert a valid battletag with the format username#0000');

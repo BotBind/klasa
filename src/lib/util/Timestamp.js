@@ -5,8 +5,8 @@ const {
     DAY,
     DAYS,
     MONTHS,
-    TIMESTAMP: { TOKENS }
-  }
+    TIMESTAMP: { TOKENS },
+  },
 } = require('./constants');
 
 /**

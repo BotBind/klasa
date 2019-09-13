@@ -12,7 +12,7 @@ module.exports = class extends Event {
       enabled: true,
       event: 'theEventToListenTo',
       emitter: client,
-      once: false
+      once: false,
     });
   }
 

@@ -134,7 +134,7 @@ class Usage {
       char: 0,
       from: 0,
       at: '',
-      fromTo: ''
+      fromTo: '',
     };
 
     for (const [i, char] of Object.entries(usageString)) {

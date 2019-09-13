@@ -9,7 +9,7 @@ module.exports = class extends Language {
   constructor(...args) {
     super(...args, {
       name: 'myLanguageName',
-      enabled: true
+      enabled: true,
     });
 
     this.language = {
@@ -17,7 +17,7 @@ module.exports = class extends Language {
       DEFAULT_LANGUAGE: 'Default Language',
       SETTING_GATEWAY_EXPECTS_GUILD: 'The parameter <Guild> expects either a Guild or a Guild Object.',
       // ...
-      COMMAND_CONF_RESET: (key, response) => `The key **${key}** has been reset to: \`${response}\``
+      COMMAND_CONF_RESET: (key, response) => `The key **${key}** has been reset to: \`${response}\``,
     };
   }
 

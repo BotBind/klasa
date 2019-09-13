@@ -214,7 +214,7 @@ class SchemaPiece {
       default: this.default,
       max: this.max,
       min: this.min,
-      type: this.type
+      type: this.type,
     };
   }
 }

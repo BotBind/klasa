@@ -146,7 +146,7 @@ class Event extends Piece {
       ...super.toJSON(),
       once: this.once,
       event: this.event,
-      emitter: this.emitter.constructor.name
+      emitter: this.emitter.constructor.name,
     };
   }
 }

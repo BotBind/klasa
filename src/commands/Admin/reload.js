@@ -7,7 +7,7 @@ module.exports = class extends Command {
       permissionLevel: 10,
       guarded: true,
       description: language => language.get('COMMAND_RELOAD_DESCRIPTION'),
-      usage: '<Store:store|Piece:piece|everything:default>'
+      usage: '<Store:store|Piece:piece|everything:default>',
     });
   }
 
@@ -46,7 +46,7 @@ module.exports = class extends Command {
       this.client.pieceStores.map(async store => {
         await store.loadAll();
         await store.init();
-      })
+      }),
     );
     if (this.client.shard) {
       await this.client.shard.broadcastEval(`

@@ -69,7 +69,7 @@ class RichDisplay {
       last: '⏭',
       jump: '🔢',
       info: 'ℹ',
-      stop: '⏹'
+      stop: '⏹',
     };
 
     /**
@@ -191,7 +191,7 @@ class RichDisplay {
       [],
       !('stop' in options) || ('stop' in options && options.stop),
       !('jump' in options) || ('jump' in options && options.jump),
-      !('firstLast' in options) || ('firstLast' in options && options.firstLast)
+      !('firstLast' in options) || ('firstLast' in options && options.firstLast),
     );
     let msg;
     if (message.editable) {
@@ -205,7 +205,7 @@ class RichDisplay {
       (reaction, user) => emojis.includes(reaction.emoji.id || reaction.emoji.name) && user !== message.client.user && options.filter(reaction, user),
       options,
       this,
-      emojis
+      emojis,
     );
   }
 

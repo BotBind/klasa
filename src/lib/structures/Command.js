@@ -337,10 +337,10 @@ class Command extends AliasPiece {
       usage: {
         usageString: this.usage.usageString,
         usageDelim: this.usage.usageDelim,
-        nearlyFullUsage: this.usage.nearlyFullUsage
+        nearlyFullUsage: this.usage.nearlyFullUsage,
       },
       usageDelim: this.usageDelim,
-      usageString: this.usageString
+      usageString: this.usageString,
     };
   }
 }

@@ -171,7 +171,7 @@ class KlasaConsole extends Console {
       data
         .split('\n')
         .map(str => `${timestamp} ${message.format(str)}`)
-        .join('\n')
+        .join('\n'),
     );
 
     if (this.logAPI) this.constructor.postLogs(type, data, this.endpoint, this.auth);
@@ -260,9 +260,9 @@ class KlasaConsole extends Console {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: auth
+        Authorization: auth,
       },
-      body: JSON.stringify({ level, message: data })
+      body: JSON.stringify({ level, message: data }),
     }).catch(error => {
       console.error(error);
     });

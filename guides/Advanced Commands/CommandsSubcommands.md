@@ -12,7 +12,7 @@ module.exports = class extends Command {
     super(...args, {
       subcommands: true,
       usage: '<set|remove|reset|show> (key:key) (value:value) [...]',
-      usageDelim: ' '
+      usageDelim: ' ',
     });
   }
 
@@ -30,7 +30,7 @@ module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
       usage: '<set|remove|reset|show> (key:key) (value:value) [...]',
-      usageDelim: ' '
+      usageDelim: ' ',
     });
   }
 

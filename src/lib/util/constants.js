@@ -3,7 +3,7 @@ const { mergeDefault, isObject } = require('./util');
 const colorBase = {
   shard: { background: 'cyan', text: 'black' },
   message: {},
-  time: {}
+  time: {},
 };
 
 exports.DEFAULTS = {
@@ -18,7 +18,7 @@ exports.DEFAULTS = {
       log: true,
       verbose: false,
       warn: true,
-      wtf: true
+      wtf: true,
     },
     createPiecesFolders: true,
     disabledCorePieces: [],
@@ -31,12 +31,12 @@ exports.DEFAULTS = {
     customPromptDefaults: {
       time: 30000,
       limit: Infinity,
-      quotedStringSupport: false
+      quotedStringSupport: false,
     },
     gateways: {
       guilds: {},
       users: {},
-      clientStorage: {}
+      clientStorage: {},
     },
     // eslint-disable-next-line no-process-env
     production: process.env.NODE_ENV === 'production',
@@ -45,7 +45,7 @@ exports.DEFAULTS = {
     pieceDefaults: {
       arguments: {
         enabled: true,
-        aliases: []
+        aliases: [],
       },
       commands: {
         aliases: [],
@@ -68,21 +68,21 @@ exports.DEFAULTS = {
         subcommands: false,
         usage: '',
         quotedStringSupport: false,
-        deletable: false
+        deletable: false,
       },
       events: {
         enabled: true,
-        once: false
+        once: false,
       },
       extendables: {
         enabled: true,
         klasa: false,
-        appliesTo: []
+        appliesTo: [],
       },
       finalizers: { enabled: true },
       inhibitors: {
         enabled: true,
-        spamProtection: false
+        spamProtection: false,
       },
       languages: { enabled: true },
       monitors: {
@@ -94,18 +94,18 @@ exports.DEFAULTS = {
         ignoreEdits: true,
         ignoreBlacklistedUsers: true,
         ignoreBlacklistedGuilds: true,
-        allowedTypes: ['DEFAULT']
+        allowedTypes: ['DEFAULT'],
       },
       providers: { enabled: true },
       serializers: {
         enabled: true,
-        aliases: []
+        aliases: [],
       },
-      tasks: { enabled: true }
+      tasks: { enabled: true },
     },
     schedule: { interval: 60000 },
     slowmode: 0,
-    slowmodeAggressive: false
+    slowmodeAggressive: false,
   },
 
   CONSOLE: {
@@ -119,7 +119,7 @@ exports.DEFAULTS = {
       log: 'log',
       verbose: 'log',
       warn: 'warn',
-      wtf: 'error'
+      wtf: 'error',
     },
     colors: {
       debug: mergeDefault(colorBase, { time: { background: 'magenta' } }),
@@ -127,8 +127,8 @@ exports.DEFAULTS = {
       log: mergeDefault(colorBase, { time: { background: 'blue' } }),
       verbose: mergeDefault(colorBase, { time: { text: 'gray' } }),
       warn: mergeDefault(colorBase, { time: { background: 'lightyellow', text: 'black' } }),
-      wtf: mergeDefault(colorBase, { message: { text: 'red' }, time: { background: 'red' } })
-    }
+      wtf: mergeDefault(colorBase, { message: { text: 'red' }, time: { background: 'red' } }),
+    },
   },
 
   QUERYBUILDER: {
@@ -148,15 +148,15 @@ exports.DEFAULTS = {
       textchannel: { type: 'VARCHAR(18)' },
       url: { type: 'TEXT' },
       user: { type: 'VARCHAR(18)' },
-      voicechannel: { type: 'VARCHAR(18)' }
+      voicechannel: { type: 'VARCHAR(18)' },
     },
     queryBuilderOptions: {
       array: () => 'TEXT',
       resolver: value => `'${(isObject(value) ? JSON.stringify(value) : String(value)).replace(/'/g, "''")}'`,
       arrayResolver: values => `'${JSON.stringify(values)}'`,
-      formatDatatype: (name, datatype, def = null) => `${name} ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`
-    }
-  }
+      formatDatatype: (name, datatype, def = null) => `${name} ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`,
+    },
+  },
 };
 
 exports.TIME = {
@@ -189,9 +189,9 @@ exports.TIME = {
       l: 4,
       L: 4,
       T: 1,
-      t: 1
+      t: 1,
       /* eslint-enable id-length */
-    }
+    },
   },
 
   CRON: {
@@ -204,7 +204,7 @@ exports.TIME = {
       '@monthly': '0 0 1 * *',
       '@weekly': '0 0 * * 0',
       '@daily': '0 0 * * *',
-      '@hourly': '0 * * * *'
+      '@hourly': '0 * * * *',
     },
     tokens: {
       jan: 1,
@@ -225,9 +225,9 @@ exports.TIME = {
       wed: 3,
       thu: 4,
       fri: 5,
-      sat: 6
-    }
-  }
+      sat: 6,
+    },
+  },
 };
 
 exports.TIME.CRON.tokensRegex = new RegExp(Object.keys(exports.TIME.CRON.tokens).join('|'), 'g');
@@ -237,5 +237,5 @@ exports.MENTION_REGEX = {
   channel: /^(?:<#)?(\d{17,19})>?$/,
   emoji: /^(?:<a?:\w{2,32}:)?(\d{17,19})>?$/,
   role: /^(?:<@&)?(\d{17,19})>?$/,
-  snowflake: /^(\d{17,19})$/
+  snowflake: /^(\d{17,19})$/,
 };

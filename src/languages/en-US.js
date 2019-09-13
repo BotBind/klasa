@@ -52,7 +52,7 @@ module.exports = class extends Language {
       // eslint-disable-next-line max-len
       MONITOR_COMMAND_HANDLER_REPEATING_REPROMPT: (tag, name, time, cancelOptions) =>
         `${tag} | **${name}** is a repeating argument | You have **${time}** seconds to respond to this prompt with additional valid arguments. Type **${cancelOptions.join(
-          '**, **'
+          '**, **',
         )}** to cancel this prompt.`,
       MONITOR_COMMAND_HANDLER_ABORTED: 'Aborted',
       INHIBITOR_COOLDOWN: remaining => `You have just used this command. You can use this command again in ${remaining} second${remaining === 1 ? '' : 's'}.`,
@@ -70,7 +70,7 @@ module.exports = class extends Language {
           usersAdded.length ? `**Users Added**\n${util.codeBlock('', usersAdded.join(', '))}` : '',
           usersRemoved.length ? `**Users Removed**\n${util.codeBlock('', usersRemoved.join(', '))}` : '',
           guildsAdded.length ? `**Guilds Added**\n${util.codeBlock('', guildsAdded.join(', '))}` : '',
-          guildsRemoved.length ? `**Guilds Removed**\n${util.codeBlock('', guildsRemoved.join(', '))}` : ''
+          guildsRemoved.length ? `**Guilds Removed**\n${util.codeBlock('', guildsRemoved.join(', '))}` : '',
         ]
           .filter(val => val !== '')
           .join('\n'),
@@ -82,7 +82,7 @@ module.exports = class extends Language {
         "The --depth flag accepts a number, for example, --depth=2, to customize util.inspect's depth.",
         'The --async flag will wrap the code into an async function where you can enjoy the use of await, however, if you want to return something, you will need the return keyword.',
         'The --showHidden flag will enable the showHidden option in util.inspect.',
-        "If the output is too large, it'll send the output as a file, or in the console if the bot does not have the ATTACH_FILES permission."
+        "If the output is too large, it'll send the output as a file, or in the console if the bot does not have the ATTACH_FILES permission.",
       ].join('\n'),
       COMMAND_EVAL_ERROR: (time, output, type) => `**Error**:${output}\n**Type**:${type}\n${time}`,
       COMMAND_EVAL_OUTPUT: (time, output, type) => `**Output**:${output}\n**Type**:${type}\n${time}`,
@@ -117,10 +117,10 @@ module.exports = class extends Language {
           [
             'The above link is generated requesting the minimum permissions required to use every command currently.',
             "I know not all permissions are right for every guild, so don't be afraid to uncheck any of the boxes.",
-            'If you try to use a command that requires more permissions than the bot is granted, it will let you know.'
-          ].join(' ')
+            'If you try to use a command that requires more permissions than the bot is granted, it will let you know.',
+          ].join(' '),
         ),
-        'Please file an issue at <https://github.com/dirigeants/klasa> if you find any bugs.'
+        'Please file an issue at <https://github.com/dirigeants/klasa> if you find any bugs.',
       ],
       COMMAND_INVITE_DESCRIPTION: 'Displays the invite link of the bot, to invite it to your guild.',
       COMMAND_INFO: [
@@ -140,7 +140,7 @@ module.exports = class extends Language {
         '• ⏲ "Tasks", which can be scheduled to run in the future, optionally repeating',
         '',
         'We hope to be a 100% customizable framework that can cater to all audiences. We do frequent updates and bugfixes when available.',
-        "If you're interested in us, check us out at https://klasa.js.org"
+        "If you're interested in us, check us out at https://klasa.js.org",
       ],
       COMMAND_INFO_DESCRIPTION: 'Provides some information about this bot.',
       COMMAND_HELP_DESCRIPTION: 'Display help for a command.',
@@ -178,11 +178,11 @@ module.exports = class extends Language {
         `• Klasa      :: v${klasaVersion}`,
         `• Discord.js :: v${discordVersion}`,
         `• Node.js    :: ${processVersion}`,
-        `• Shard      :: ${(message.guild ? message.guild.shardID : 0) + 1} / ${this.client.options.totalShardCount}`
+        `• Shard      :: ${(message.guild ? message.guild.shardID : 0) + 1} / ${this.client.options.totalShardCount}`,
       ],
       COMMAND_STATS_DESCRIPTION: 'Provides some details about the bot and stats.',
       MESSAGE_PROMPT_TIMEOUT: 'The prompt has timed out.',
-      TEXT_PROMPT_ABORT_OPTIONS: ['abort', 'stop', 'cancel']
+      TEXT_PROMPT_ABORT_OPTIONS: ['abort', 'stop', 'cancel'],
     };
   }
 

@@ -23,7 +23,7 @@ const { KlasaClient } = require('@botbind/klasa');
 
 new KlasaClient({
   prefix: 'k!',
-  providers: { default: 'rethinkdb' }
+  providers: { default: 'rethinkdb' },
 }).login('A_BEAUTIFUL_TOKEN_AINT_IT?');
 ```
 
@@ -40,7 +40,7 @@ const { KlasaClient, Schema } = require('@botbind/klasa');
 
 const client = new KlasaClient({
   prefix: 'k!',
-  providers: { default: 'rethinkdb' }
+  providers: { default: 'rethinkdb' },
 });
 
 // Now, we create it:
@@ -49,7 +49,7 @@ client.gateways.register('channels', {
   schema: new Schema()
     .add('disabledCommands', 'Command', { array: true })
     .add('commandThrottle', 'Integer', { default: 5, min: 0, max: 60 })
-    .add('commandReset', 'Integer', { default: 2, min: 0, max: 30 })
+    .add('commandReset', 'Integer', { default: 2, min: 0, max: 30 }),
 });
 
 client.login('A_BEAUTIFUL_TOKEN_AINT_IT?');
@@ -73,8 +73,8 @@ new Klasa.Client({
   providers: { default: 'json' },
   gateways: {
     guilds: { provider: 'rethinkdb' },
-    users: { provider: 'postgresql' }
-  }
+    users: { provider: 'postgresql' },
+  },
 }).login('A_BEAUTIFUL_TOKEN_AINT_IT?');
 ```
 

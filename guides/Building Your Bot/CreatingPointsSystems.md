@@ -7,7 +7,7 @@ Before we work with the social module, we need to update the built-in {@link Gat
 ```javascript
 KlasaClient.defaultUserSchema.add('experience', 'Integer', {
   default: 0,
-  configurable: false
+  configurable: false,
 });
 ```
 
@@ -47,7 +47,7 @@ Some social bots have level up messages. How do we set it up? There are two ways
 ```javascript
 KlasaClient.defaultUserSchema.add('level', 'Integer', {
   default: 0,
-  configurable: false
+  configurable: false,
 });
 ```
 

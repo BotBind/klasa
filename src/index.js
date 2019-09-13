@@ -82,7 +82,7 @@ module.exports = {
   util: require('./lib/util/util'),
 
   // version
-  version: require('../package').version
+  version: require('../package').version,
 };
 
 /**

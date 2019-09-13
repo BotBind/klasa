@@ -8,7 +8,7 @@ module.exports = class extends Command {
       description: language => language.get('COMMAND_BLACKLIST_DESCRIPTION'),
       usage: '<User:user|Guild:guild|guild:str> [...]',
       usageDelim: ' ',
-      guarded: true
+      guarded: true,
     });
 
     this.terms = ['usersAdded', 'usersRemoved', 'guildsAdded', 'guildsRemoved'];

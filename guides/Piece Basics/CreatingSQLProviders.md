@@ -99,7 +99,7 @@ this.qb = new QueryBuilder({
   // default value from the SchemaPiece instance, plus the name. In PGSQL, names that have
   // uppercase letters are automatically lowercased if they aren't between quotes, giving
   // this option a chance. Normally, you don't need to define this.
-  formatDatatype: (name, datatype, def = null) => `"${name}" ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`
+  formatDatatype: (name, datatype, def = null) => `"${name}" ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`,
 });
 ```
 
@@ -125,14 +125,14 @@ exports.DEFAULTS.QUERYBUILDER = {
     textchannel: { type: 'VARCHAR(18)' },
     url: { type: 'TEXT' },
     user: { type: 'VARCHAR(18)' },
-    voicechannel: { type: 'VARCHAR(18)' }
+    voicechannel: { type: 'VARCHAR(18)' },
   },
   queryBuilderOptions: {
     array: () => 'TEXT',
     resolver: value => `'${String(value).replace(/'/g, "''")}'`,
     arrayResolver: values => `'${JSON.stringify(values)}'`,
-    formatDatatype: (name, datatype, def = null) => `${name} ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`
-  }
+    formatDatatype: (name, datatype, def = null) => `${name} ${datatype}${def !== null ? ` NOT NULL DEFAULT ${def}` : ''}`,
+  },
 };
 ```
 

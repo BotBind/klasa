@@ -9,7 +9,7 @@ module.exports = class extends Command {
       guarded: true,
       description: language => language.get('COMMAND_EVAL_DESCRIPTION'),
       extendedHelp: language => language.get('COMMAND_EVAL_EXTENDEDHELP'),
-      usage: '<expression:str>'
+      usage: '<expression:str>',
     });
   }
 
@@ -68,7 +68,7 @@ module.exports = class extends Command {
     if (typeof result !== 'string') {
       result = inspect(result, {
         depth: flags.depth ? parseInt(flags.depth) || 0 : 0,
-        showHidden: Boolean(flags.showHidden)
+        showHidden: Boolean(flags.showHidden),
       });
     }
     return { success, type, time: this.formatTime(syncTime, asyncTime), result: util.clean(result) };

@@ -23,7 +23,7 @@ module.exports = class extends Command {
       quotedStringSupport: false,
       usage: '',
       usageDelim: undefined,
-      extendedHelp: 'No extended help available.'
+      extendedHelp: 'No extended help available.',
     });
   }
 

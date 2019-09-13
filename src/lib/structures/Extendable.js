@@ -60,9 +60,9 @@ class Extendable extends Piece {
         structure,
         {
           staticPropertyDescriptors: Object.assign({}, ...staticPropertyNames.map(name => ({ [name]: Object.getOwnPropertyDescriptor(structure, name) || { value: undefined } }))),
-          instancePropertyDescriptors: Object.assign({}, ...instancePropertyNames.map(name => ({ [name]: Object.getOwnPropertyDescriptor(structure.prototype, name) || { value: undefined } })))
-        }
-      ])
+          instancePropertyDescriptors: Object.assign({}, ...instancePropertyNames.map(name => ({ [name]: Object.getOwnPropertyDescriptor(structure.prototype, name) || { value: undefined } }))),
+        },
+      ]),
     );
   }
 
@@ -125,7 +125,7 @@ class Extendable extends Piece {
   toJSON() {
     return {
       ...super.toJSON(),
-      appliesTo: this.appliesTo.map(fn => fn.name)
+      appliesTo: this.appliesTo.map(fn => fn.name),
     };
   }
 }

@@ -48,7 +48,7 @@ module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
       description: 'Get the name of an emoji.',
-      usage: '<emoji:emoji>'
+      usage: '<emoji:emoji>',
     });
   }
 

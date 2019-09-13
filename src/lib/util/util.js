@@ -349,7 +349,7 @@ Util.titleCaseVariants = {
   textchannel: 'TextChannel',
   voicechannel: 'VoiceChannel',
   categorychannel: 'CategoryChannel',
-  guildmember: 'GuildMember'
+  guildmember: 'GuildMember',
 };
 
 /**

@@ -1,8 +1,8 @@
 const {
   TIME: {
     DAY,
-    CRON: { allowedNum, partRegex, wildcardRegex, predefined, tokens, tokensRegex }
-  }
+    CRON: { allowedNum, partRegex, wildcardRegex, predefined, tokens, tokensRegex },
+  },
 } = require('./constants');
 
 /**
@@ -76,7 +76,7 @@ class Cron {
             }
           }
           return match;
-        })
+        }),
       )
       .join(' ');
     return cron.replace(tokensRegex, match => tokens[match]);

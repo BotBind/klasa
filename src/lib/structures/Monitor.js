@@ -147,7 +147,7 @@ class Monitor extends Piece {
       ignoreWebhooks: this.ignoreWebhooks,
       ignoreEdits: this.ignoreEdits,
       ignoreBlacklistedUsers: this.ignoreBlacklistedUsers,
-      ignoreBlacklistedGuilds: this.ignoreBlacklistedGuilds
+      ignoreBlacklistedGuilds: this.ignoreBlacklistedGuilds,
     };
   }
 }

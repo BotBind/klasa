@@ -6,7 +6,7 @@ module.exports = class extends Command {
       permissionLevel: 10,
       guarded: true,
       description: language => language.get('COMMAND_ENABLE_DESCRIPTION'),
-      usage: '<Piece:piece>'
+      usage: '<Piece:piece>',
     });
   }
 

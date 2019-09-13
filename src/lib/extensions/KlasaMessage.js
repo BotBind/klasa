@@ -2,7 +2,7 @@ const {
   Structures,
   Collection,
   APIMessage,
-  Permissions: { FLAGS }
+  Permissions: { FLAGS },
 } = require('discord.js');
 
 module.exports = Structures.extend('Message', Message => {
@@ -165,8 +165,8 @@ module.exports = Structures.extend('Message', Message => {
             })
             .catch(() => {
               // noop
-            })
-        )
+            }),
+        ),
       );
       return col;
     }
@@ -315,7 +315,7 @@ module.exports = Structures.extend('Message', Message => {
       this.prompter = this.command.usage.createPrompt(this, {
         quotedStringSupport: this.command.quotedStringSupport,
         time: this.command.promptTime,
-        limit: this.command.promptLimit
+        limit: this.command.promptLimit,
       });
       this.client.emit('commandRun', this, this.command, this.args);
       return this;

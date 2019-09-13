@@ -32,7 +32,7 @@ module.exports = class extends Command {
         .setColor(0x673ab7)
         .setAuthor(this.client.user.name, this.client.user.avatarURL())
         .setTitle('Norway Pictures Slideshow')
-        .setDescription('Scroll between the images using the provided reaction emotes.')
+        .setDescription('Scroll between the images using the provided reaction emotes.'),
     );
 
     for (let i = 0; i < images.length; i++) {
@@ -52,7 +52,7 @@ First we create a new {@link RichDisplay} instance, but this time we pass in a [
 
 ```javascript
 const display = new RichDisplay(
-  new MessageEmbed()
+  new MessageEmbed(),
   /* ... */
 );
 ```

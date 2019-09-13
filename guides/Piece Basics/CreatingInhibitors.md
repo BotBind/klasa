@@ -16,7 +16,7 @@ module.exports = class extends Inhibitor {
     super(...args, {
       name: 'myInhibitorName',
       enabled: true,
-      spamProtection: false
+      spamProtection: false,
     });
   }
 

@@ -12,7 +12,7 @@ class MyExtendable extends Extendable {
     super(...args, {
       appliesTo: [],
       name: 'nameOfExtendable',
-      enabled: true
+      enabled: true,
     });
   }
 
@@ -60,7 +60,7 @@ module.exports = class extends Extendable {
     super(...args, {
       appliesTo: [],
       name: 'nameOfExtendable',
-      enabled: true
+      enabled: true,
     });
   }
 };

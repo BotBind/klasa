@@ -257,7 +257,7 @@ class Settings {
       avoidUnconfigurable: typeof options.avoidUnconfigurable === 'boolean' ? options.avoidUnconfigurable : false,
       action: typeof options.action === 'string' ? options.action : 'auto',
       arrayPosition: typeof options.arrayPosition === 'number' ? options.arrayPosition : null,
-      force: typeof options.force === 'boolean' ? options.force : false
+      force: typeof options.force === 'boolean' ? options.force : false,
     });
   }
 
@@ -450,8 +450,8 @@ class Settings {
         piece
           .parse(value, guild)
           .then(parsed => output.push(parsed))
-          .catch(error => errors.push(error))
-      )
+          .catch(error => errors.push(error)),
+      ),
     );
 
     return output;

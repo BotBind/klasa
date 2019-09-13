@@ -188,7 +188,7 @@ class GatewayStorage {
     return {
       type: this.type,
       options: { provider: this.providerName },
-      schema: this.schema.toJSON()
+      schema: this.schema.toJSON(),
     };
   }
 

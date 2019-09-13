@@ -1,6 +1,6 @@
 const { isObject, mergeDefault } = require('./util');
 const {
-  DEFAULTS: { QUERYBUILDER }
+  DEFAULTS: { QUERYBUILDER },
 } = require('./constants');
 
 class QueryBuilder {

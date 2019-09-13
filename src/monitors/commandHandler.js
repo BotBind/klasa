@@ -1,7 +1,7 @@
 const {
   Monitor,
   Stopwatch,
-  util: { regExpEsc }
+  util: { regExpEsc },
 } = require('@botbind/klasa');
 
 module.exports = class extends Monitor {
@@ -38,7 +38,7 @@ module.exports = class extends Monitor {
           .split(' ')[0]
           .toLowerCase(),
         prefix: result.regex,
-        prefixLength: result.length
+        prefixLength: result.length,
       } :
       { commandText: false };
   }

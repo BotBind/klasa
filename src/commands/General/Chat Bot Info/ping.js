@@ -4,7 +4,7 @@ module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
       guarded: true,
-      description: language => language.get('COMMAND_PING_DESCRIPTION')
+      description: language => language.get('COMMAND_PING_DESCRIPTION'),
     });
   }
 

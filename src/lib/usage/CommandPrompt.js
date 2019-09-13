@@ -29,7 +29,7 @@ class CommandPrompt extends TextPrompt {
         .split(' ')
         .slice(1)
         .join(' ')
-        .trim()
+        .trim(),
     );
   }
 

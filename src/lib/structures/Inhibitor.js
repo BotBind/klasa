@@ -67,7 +67,7 @@ class Inhibitor extends Piece {
   toJSON() {
     return {
       ...super.toJSON(),
-      spamProtection: this.spamProtection
+      spamProtection: this.spamProtection,
     };
   }
 }

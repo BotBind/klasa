@@ -39,7 +39,7 @@ class AliasPiece extends Piece {
   toJSON() {
     return {
       ...super.toJSON(),
-      aliases: this.aliases.slice(0)
+      aliases: this.aliases.slice(0),
     };
   }
 }
