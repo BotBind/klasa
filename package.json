@@ -2,7 +2,7 @@
   "name": "@botbind/klasa",
   "version": "0.5.3-dev",
   "description": "Klasa framework modified for developing Bot Bind addons.",
-  "homepage": "http://botbind.com",
+  "homepage": "https://botbind.com",
   "bugs": {
     "url": "https://github.com/BotBind/klasa/issues"
   },
