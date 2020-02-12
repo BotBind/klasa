@@ -1,6 +1,6 @@
 {
   "name": "@botbind/klasa",
-  "version": "0.5.4-dev",
+  "version": "0.5.5-dev",
   "description": "Klasa framework modified for developing Bot Bind addons.",
   "homepage": "https://botbind.com",
   "bugs": {
@@ -23,7 +23,7 @@
     "fs-nextra": "^0.4.5"
   },
   "peerDependencies": {
-    "discord.js": "github:discordjs/discord.js#master"
+    "discord.js": "github:discordjs/discord.js#fe7df708e44e0280dfaf0f8e457b154781bb5140"
   },
   "devDependencies": {
     "@types/node": "^12.7.2",
