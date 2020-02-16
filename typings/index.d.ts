@@ -1,4 +1,4 @@
-declare module 'klasa' {
+declare module '@botbind/klasa' {
 
 	import { ExecOptions } from 'child_process';
 
