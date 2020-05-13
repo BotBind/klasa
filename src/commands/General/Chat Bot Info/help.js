@@ -31,16 +31,29 @@ module.exports = class extends Command {
 		const help = await this.buildHelp(message);
 		const categories = Object.keys(help);
 		const helpMessage = [];
+		const charLimit = 1900;
+
 		for (let cat = 0; cat < categories.length; cat++) {
-			helpMessage.push(`**${categories[cat]} Commands**:`, '```asciidoc');
+			helpMessage.push(`**${categories[cat]} Commands**:`);
 			const subCategories = Object.keys(help[categories[cat]]);
-			for (let subCat = 0; subCat < subCategories.length; subCat++) helpMessage.push(`= ${subCategories[subCat]} =`, `${help[categories[cat]][subCategories[subCat]].join('\n')}\n`);
-			helpMessage.push('```', '\u200b');
+
+			for (let subCat = 0; subCat < subCategories.length; subCat++) {
+				let subCategoryCmds = `${help[categories[cat]][subCategories[subCat]].join('\n')}\n`;
+
+				if (subCategoryCmds.length > charLimit) {
+					subCategoryCmds = subCategoryCmds.substring(0, charLimit);
+				}
+
+				helpMessage.push( '```asciidoc', `= ${subCategories[subCat]} =`, subCategoryCmds, '```', '\u200b');
+			}
 		}
 
 		return message.author.send(helpMessage, { split: { char: '\u200b' } })
 			.then(() => { if (message.channel.type !== 'dm') message.sendLocale('COMMAND_HELP_DM'); })
-			.catch(() => { if (message.channel.type !== 'dm') message.sendLocale('COMMAND_HELP_NODM'); });
+			.catch((err) => { 
+				console.log('err: ', err);
+				if (message.channel.type !== 'dm') message.sendLocale('COMMAND_HELP_NODM'); 
+			});
 	}
 
 	async buildHelp(message) {
